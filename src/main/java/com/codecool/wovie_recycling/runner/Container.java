@@ -1,2 +1,20 @@
-package com.codecool.wovie_recycling.runner;public class Container {
+package com.codecool.wovie_recycling.runner;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import java.util.List;
+
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class Container {
+    private List<Feature> features;
+
+    public List<Feature> getFeatures() {
+        return features;
+    }
+
+    public void setFeatures(List<Feature> features) {
+        this.features = features;
+    }
 }
+
