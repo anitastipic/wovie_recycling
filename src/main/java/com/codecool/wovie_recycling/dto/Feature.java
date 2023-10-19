@@ -1,4 +1,4 @@
-package com.codecool.wovie_recycling.runner;
+package com.codecool.wovie_recycling.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
