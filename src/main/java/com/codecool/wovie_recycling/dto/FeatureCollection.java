@@ -6,7 +6,7 @@ import java.util.List;
 
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Container {
+public class FeatureCollection {
     private List<Feature> features;
 
     public List<Feature> getFeatures() {
