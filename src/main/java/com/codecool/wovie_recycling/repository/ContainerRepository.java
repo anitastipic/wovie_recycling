@@ -1,2 +1,15 @@
-package com.codecool.wovie_recycling.repository;public interface ContainerRepository {
+package com.codecool.wovie_recycling.repository;
+
+import com.codecool.wovie_recycling.model.Container;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+@Repository
+public interface ContainerRepository extends JpaRepository<Container, Long> {
+    List<Container> findByDistrict(int district);
+    @Query("SELECT DISTINCT c.district FROM Container c")
+    List<Integer> findDistinctJsonDistricts();
 }
