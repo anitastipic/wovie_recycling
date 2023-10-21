@@ -24,18 +24,12 @@ public class ContainerRunner {
                 FeatureCollection featureCollection = mapper.readValue(inputStream, FeatureCollection.class);
                 List<Feature> features = featureCollection.getFeatures();
                 features.forEach(feature -> {
-                    Container newContainer = new Container();
                     Geometry geometry = feature.getGeometry();
                     Properties properties = feature.getProperties();
-                    newContainer.setLatitude(geometry.getCoordinates().get(0));
-                    newContainer.setLongitude(geometry.getCoordinates().get(1));
-                    newContainer.setAddress(properties.getAddress());
-                    newContainer.setDistrict(properties.getDistrict());
-                    newContainer.setGlassWaste(properties.getGlassWaste());
-                    newContainer.setMetalWaste(properties.getMetalWaste());
-                    newContainer.setPaperWaste(properties.getPaperWaste());
-                    newContainer.setPlasticWaste(properties.getPlasticWaste());
-                    newContainer.setOrganicWaste(properties.getOrganicWaste());
+                    Container newContainer = new Container(geometry.getCoordinates().get(0), geometry.getCoordinates().get(1),
+                                                            properties.getDistrict(), properties.getAddress(), properties.getPaperWaste(),
+                                                            properties.getOrganicWaste(), properties.getMetalWaste(), properties.getGlassWaste(),
+                                                            properties.getPlasticWaste());
                     containerService.save(newContainer);
                     System.out.println("Container saved");
                 });

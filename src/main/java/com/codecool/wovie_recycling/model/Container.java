@@ -1,6 +1,5 @@
 package com.codecool.wovie_recycling.model;
 
-import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 
 @Entity
@@ -17,6 +16,23 @@ public class Container {
     private Boolean metalWaste;
     private Boolean glassWaste;
     private Boolean plasticWaste;
+
+    protected Container() {
+    }
+    public Container(Double latitude, Double longitude, int district, String address,
+                     Boolean paperWaste, Boolean organicWaste, Boolean metalWaste,
+                     Boolean glassWaste, Boolean plasticWaste) {
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.district = district;
+        this.address = address;
+        this.paperWaste = paperWaste;
+        this.organicWaste = organicWaste;
+        this.metalWaste = metalWaste;
+        this.glassWaste = glassWaste;
+        this.plasticWaste = plasticWaste;
+    }
+
 
     public Long getId() {
         return id;
