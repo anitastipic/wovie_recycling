@@ -1,8 +1,7 @@
 package com.codecool.wovie_recycling.controller;
 
-import com.codecool.wovie_recycling.exception.ContainerNotFoundException;
 import com.codecool.wovie_recycling.model.Container;
-import com.codecool.wovie_recycling.repository.ContainerRepository;
+import com.codecool.wovie_recycling.service.ContainerService;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,26 +10,25 @@ import java.util.List;
 @RestController
 @RequestMapping("container")
 public class ContainerController {
-    private final ContainerRepository containerRepository;
+    private final ContainerService containerService;
 
-    public ContainerController(ContainerRepository containerRepository) {
-        this.containerRepository = containerRepository;
+    public ContainerController(ContainerService containerService) {
+        this.containerService = containerService;
     }
     @GetMapping
     List<Container> findAll() {
-        return containerRepository.findAll();
+        return containerService.findAll();
     }
 
     @GetMapping("/id/{id}")
     Container findById(@PathVariable long id) throws Throwable {
-        return containerRepository.findById(id)
-                .orElseThrow(ContainerNotFoundException::new);
+        return containerService.findById(id);
     }
 
     @PostMapping
     @Transactional
     public Container save(@RequestBody Container container) {
-        return containerRepository.save(container);
+        return containerService.save(container);
     }
 
 

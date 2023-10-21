@@ -8,12 +8,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
 @Configuration
+@Order(1)
 public class ContainerRunner {
     @Bean
     CommandLineRunner initializeDbWithContainers(ContainerService containerService) {
@@ -27,12 +29,13 @@ public class ContainerRunner {
                     Geometry geometry = feature.getGeometry();
                     Properties properties = feature.getProperties();
                     Container newContainer = new Container(geometry.getCoordinates().get(0), geometry.getCoordinates().get(1),
-                                                            properties.getDistrict(), properties.getStreet(), properties.getPaperWaste(),
-                                                            properties.getOrganicWaste(), properties.getMetalWaste(), properties.getGlassWaste(),
-                                                            properties.getPlasticWaste(), properties.getStreetNumber());
+                            properties.getDistrict(), properties.getStreet(), properties.getPaperWaste(),
+                            properties.getOrganicWaste(), properties.getMetalWaste(), properties.getGlassWaste(),
+                            properties.getPlasticWaste(), properties.getStreetNumber());
                     containerService.save(newContainer);
-                    System.out.println("Container saved");
+
                 });
+                System.out.println("Containers saved");
 
             } catch (IOException e) {
                 System.out.println("Unable to save containers: " + e.getMessage());

@@ -1,0 +1,26 @@
+[
+  {"districtNumber": 1, "districtName": "Innere Stadt"},
+  {"districtNumber": 2, "districtName": "Leopoldstadt"},
+  {"districtNumber": 3, "districtName": "Landstraße"},
+  {"districtNumber": 4, "districtName": "Wieden"},
+  {"districtNumber": 5, "districtName": "Margareten"},
+  {"districtNumber": 6, "districtName": "Mariahilf"},
+  {"districtNumber": 7, "districtName": "Neubau"},
+  {"districtNumber": 8, "districtName": "Josefstadt"},
+  {"districtNumber": 9, "districtName": "Alsergrund"},
+  {"districtNumber": 10, "districtName": "Favoriten"},
+  {"districtNumber": 11, "districtName": "Simmering"},
+  {"districtNumber": 12, "districtName": "Meidling"},
+  {"districtNumber": 13, "districtName": "Hietzing"},
+  {"districtNumber": 14, "districtName": "Penzing"},
+  {"districtNumber": 15, "districtName": "Rudolfsheim-Fünfhaus"},
+  {"districtNumber": 16, "districtName": "Ottakring"},
+  {"districtNumber": 17, "districtName": "Hernals"},
+  {"districtNumber": 18, "districtName": "Währing"},
+  {"districtNumber": 19, "districtName": "Döbling"},
+  {"districtNumber": 20, "districtName": "Brigittenau"},
+  {"districtNumber": 21, "districtName": "Floridsdorf"},
+  {"districtNumber": 22, "districtName": "Donaustadt"},
+  {"districtNumber": 23, "districtName": "Liesing"}
+]
+

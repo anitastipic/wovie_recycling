@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 public class Container {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "container_id")
     private Long id;
     private Double latitude;
     private Double longitude;
