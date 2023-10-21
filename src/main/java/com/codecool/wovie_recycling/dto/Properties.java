@@ -8,7 +8,9 @@ public class Properties {
     @JsonProperty("BEZIRK")
     private int district;
     @JsonProperty("STRASSE")
-    private String address;
+    private String street;
+    @JsonProperty("ONR")
+    private String streetNumber;
     @JsonProperty("FRAKTION_PA")
     private Boolean paperWaste;
     @JsonProperty("FRAKTION_BI")
@@ -20,6 +22,14 @@ public class Properties {
     @JsonProperty("FRAKTION_KV")
     private Boolean plasticWaste;
 
+    public String getStreetNumber() {
+        return streetNumber;
+    }
+
+    public void setStreetNumber(String streetNumber) {
+        this.streetNumber = streetNumber;
+    }
+
     public int getDistrict() {
         return district;
     }
@@ -28,12 +38,12 @@ public class Properties {
         this.district = district;
     }
 
-    public String getAddress() {
-        return address;
+    public String getStreet() {
+        return street;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setStreet(String street) {
+        this.street = street;
     }
 
     public Boolean getPaperWaste() {

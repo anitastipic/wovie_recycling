@@ -27,9 +27,9 @@ public class ContainerRunner {
                     Geometry geometry = feature.getGeometry();
                     Properties properties = feature.getProperties();
                     Container newContainer = new Container(geometry.getCoordinates().get(0), geometry.getCoordinates().get(1),
-                                                            properties.getDistrict(), properties.getAddress(), properties.getPaperWaste(),
+                                                            properties.getDistrict(), properties.getStreet(), properties.getPaperWaste(),
                                                             properties.getOrganicWaste(), properties.getMetalWaste(), properties.getGlassWaste(),
-                                                            properties.getPlasticWaste());
+                                                            properties.getPlasticWaste(), properties.getStreetNumber());
                     containerService.save(newContainer);
                     System.out.println("Container saved");
                 });

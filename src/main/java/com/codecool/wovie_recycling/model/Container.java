@@ -10,7 +10,9 @@ public class Container {
     private Double latitude;
     private Double longitude;
     private int district;
-    private String address;
+    private String street;
+    @Column(nullable = true)
+    private String streetNumber;
     private Boolean paperWaste;
     private Boolean organicWaste;
     private Boolean metalWaste;
@@ -21,11 +23,12 @@ public class Container {
     }
     public Container(Double latitude, Double longitude, int district, String address,
                      Boolean paperWaste, Boolean organicWaste, Boolean metalWaste,
-                     Boolean glassWaste, Boolean plasticWaste) {
+                     Boolean glassWaste, Boolean plasticWaste, String streetNumber) {
         this.latitude = latitude;
         this.longitude = longitude;
         this.district = district;
-        this.address = address;
+        this.street = address;
+        this.streetNumber = streetNumber;
         this.paperWaste = paperWaste;
         this.organicWaste = organicWaste;
         this.metalWaste = metalWaste;
@@ -33,6 +36,13 @@ public class Container {
         this.plasticWaste = plasticWaste;
     }
 
+    public String getStreetNumber() {
+        return streetNumber;
+    }
+
+    public void setStreetNumber(String streetNumber) {
+        this.streetNumber = streetNumber;
+    }
 
     public Long getId() {
         return id;
@@ -66,12 +76,12 @@ public class Container {
         this.district = district;
     }
 
-    public String getAddress() {
-        return address;
+    public String getStreet() {
+        return street;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setStreet(String address) {
+        this.street = address;
     }
 
     public Boolean getPaperWaste() {
