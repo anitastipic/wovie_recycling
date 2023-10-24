@@ -6,29 +6,33 @@ import jakarta.persistence.*;
 public class Container {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "container_id")
+    @Column(name = "containerId")
     private Long id;
     private Double latitude;
     private Double longitude;
-    private int district;
+    private int districtNumber;
+    @ManyToOne
+    @JoinColumn(name = "districtId")
+    private District district;
     private String street;
     @Column(nullable = true)
     private String streetNumber;
-    private Boolean paperWaste;
-    private Boolean organicWaste;
-    private Boolean metalWaste;
-    private Boolean glassWaste;
-    private Boolean plasticWaste;
+    private boolean paperWaste;
+    private boolean organicWaste;
+    private boolean metalWaste;
+    private boolean glassWaste;
+    private boolean plasticWaste;
 
     protected Container() {
     }
-    public Container(Double latitude, Double longitude, int district, String address,
-                     Boolean paperWaste, Boolean organicWaste, Boolean metalWaste,
-                     Boolean glassWaste, Boolean plasticWaste, String streetNumber) {
+
+    public Container(Double latitude, Double longitude, int districtNumber, String street,
+                     boolean paperWaste, boolean organicWaste, boolean metalWaste,
+                     boolean glassWaste, boolean plasticWaste, String streetNumber) {
         this.latitude = latitude;
         this.longitude = longitude;
-        this.district = district;
-        this.street = address;
+        this.districtNumber = districtNumber;
+        this.street = street;
         this.streetNumber = streetNumber;
         this.paperWaste = paperWaste;
         this.organicWaste = organicWaste;
@@ -37,20 +41,9 @@ public class Container {
         this.plasticWaste = plasticWaste;
     }
 
-    public String getStreetNumber() {
-        return streetNumber;
-    }
-
-    public void setStreetNumber(String streetNumber) {
-        this.streetNumber = streetNumber;
-    }
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public Double getLatitude() {
@@ -69,23 +62,40 @@ public class Container {
         this.longitude = longitude;
     }
 
-    public int getDistrict() {
+    public int getDistrictNumber() {
+        return districtNumber;
+    }
+
+    public void setDistrictNumber(int districtNumber) {
+        this.districtNumber = districtNumber;
+    }
+
+    public District getDistrict() {
         return district;
     }
 
-    public void setDistrict(int district) {
+    public void setDistrict(District district) {
         this.district = district;
+        district.addContainer(this);
     }
 
     public String getStreet() {
         return street;
     }
 
-    public void setStreet(String address) {
-        this.street = address;
+    public void setStreet(String street) {
+        this.street = street;
     }
 
-    public Boolean getPaperWaste() {
+    public String getStreetNumber() {
+        return streetNumber;
+    }
+
+    public void setStreetNumber(String streetNumber) {
+        this.streetNumber = streetNumber;
+    }
+
+    public boolean getPaperWaste() {
         return paperWaste;
     }
 
@@ -93,7 +103,7 @@ public class Container {
         this.paperWaste = paperWaste;
     }
 
-    public Boolean getOrganicWaste() {
+    public boolean getOrganicWaste() {
         return organicWaste;
     }
 
@@ -101,7 +111,7 @@ public class Container {
         this.organicWaste = organicWaste;
     }
 
-    public Boolean getMetalWaste() {
+    public boolean getMetalWaste() {
         return metalWaste;
     }
 
@@ -109,7 +119,7 @@ public class Container {
         this.metalWaste = metalWaste;
     }
 
-    public Boolean getGlassWaste() {
+    public boolean getGlassWaste() {
         return glassWaste;
     }
 
@@ -117,13 +127,11 @@ public class Container {
         this.glassWaste = glassWaste;
     }
 
-    public Boolean getPlasticWaste() {
+    public boolean getPlasticWaste() {
         return plasticWaste;
     }
 
     public void setPlasticWaste(Boolean plasticWaste) {
         this.plasticWaste = plasticWaste;
     }
-
-
 }

@@ -9,7 +9,5 @@ import java.util.List;
 
 @Repository
 public interface ContainerRepository extends JpaRepository<Container, Long> {
-    List<Container> findByDistrict(int district);
-    @Query("SELECT DISTINCT c.district FROM Container c")
-    List<Integer> findDistinctJsonDistricts();
+
 }

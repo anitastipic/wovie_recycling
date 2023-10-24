@@ -10,14 +10,14 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 
-import javax.imageio.IIOException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
 @Configuration
-@Order(0)
 public class DistrictRunner {
     @Bean
+    @Order(0)
     CommandLineRunner initializeDbWithDistricts(DistrictService districtService) {
         return args -> {
             ObjectMapper objectMapper = new ObjectMapper();
@@ -26,10 +26,10 @@ public class DistrictRunner {
                 List<DistrictDto> districts = objectMapper.readValue(inputStream, new TypeReference<List<DistrictDto>>() {});
                 districts.forEach(districtDto -> {
                     District district = new District(districtDto.getDistrictName(), districtDto.getDistrictNumber());
-                    districtService.save(district);
+                    District savedDistrict = districtService.save(district);
                 });
                 System.out.println("Districts saved");
-            } catch (IIOException e) {
+            } catch (IOException e) {
                 System.out.println("Unable to save districts" + e.getMessage());
             }
         };

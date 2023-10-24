@@ -23,4 +23,8 @@ public class DistrictService {
     public District save(District district) {
         return districtRepository.save(district);
     }
+
+    public District findByDistrictNumber(int number) {
+        return districtRepository.findByDistrictNumber(number);
+    }
 }
