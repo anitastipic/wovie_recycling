@@ -1,6 +1,6 @@
-package com.codecool.wovie_recycling.dto;
+package com.codecool.wovie_recycling.runner;
 
-public class DistrictDto {
+public class DistrictDTO {
     private int districtNumber;
     private String districtName;
 

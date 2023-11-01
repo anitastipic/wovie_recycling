@@ -1,7 +1,5 @@
 package com.codecool.wovie_recycling.runner;
 
-import com.codecool.wovie_recycling.dto.DistrictDto;
-import com.codecool.wovie_recycling.model.District;
 import com.codecool.wovie_recycling.service.DistrictService;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -23,10 +21,10 @@ public class DistrictRunner {
             ObjectMapper objectMapper = new ObjectMapper();
             InputStream inputStream = TypeReference.class.getResourceAsStream("/json/districts.json");
             try {
-                List<DistrictDto> districts = objectMapper.readValue(inputStream, new TypeReference<List<DistrictDto>>() {});
+                List<DistrictDTO> districts = objectMapper.readValue(inputStream, new TypeReference<List<DistrictDTO>>() {});
                 districts.forEach(districtDto -> {
-                    District district = new District(districtDto.getDistrictName(), districtDto.getDistrictNumber());
-                    District savedDistrict = districtService.save(district);
+                    com.codecool.wovie_recycling.model.District district = new com.codecool.wovie_recycling.model.District(districtDto.getDistrictName(), districtDto.getDistrictNumber());
+                    com.codecool.wovie_recycling.model.District savedDistrict = districtService.save(district);
                 });
                 System.out.println("Districts saved");
             } catch (IOException e) {

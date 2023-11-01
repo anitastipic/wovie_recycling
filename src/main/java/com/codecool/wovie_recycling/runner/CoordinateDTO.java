@@ -1,6 +1,6 @@
-package com.codecool.wovie_recycling.dto;
+package com.codecool.wovie_recycling.runner;
 
-public class Coordinate {
+public class CoordinateDTO {
     private Double longitude;
     private Double latitude;
 
