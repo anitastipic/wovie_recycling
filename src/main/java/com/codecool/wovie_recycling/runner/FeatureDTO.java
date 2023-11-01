@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class FeatureDTO {
 
     private GeometryDTO geometry;
-    private ContainerRunner.Properties properties;
+    private PropertiesDTO properties;
 
     public GeometryDTO getGeometry() {
         return geometry;
@@ -16,11 +16,11 @@ public class FeatureDTO {
         this.geometry = geometry;
     }
 
-    public ContainerRunner.Properties getProperties() {
+    public PropertiesDTO getProperties() {
         return properties;
     }
 
-    public void setProperties(ContainerRunner.Properties properties) {
+    public void setProperties(PropertiesDTO properties) {
         this.properties = properties;
     }
 }
