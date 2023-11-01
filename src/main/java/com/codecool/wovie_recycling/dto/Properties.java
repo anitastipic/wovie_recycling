@@ -22,6 +22,18 @@ public class Properties {
     @JsonProperty("FRAKTION_KV")
     private Boolean plasticWaste;
 
+    protected Properties() {}
+    public Properties(int district, String street, String streetNumber, Boolean paperWaste, Boolean organicWaste, Boolean metalWaste, Boolean glassWaste, Boolean plasticWaste) {
+        this.district = district;
+        this.street = street;
+        this.streetNumber = streetNumber;
+        this.paperWaste = paperWaste;
+        this.organicWaste = organicWaste;
+        this.metalWaste = metalWaste;
+        this.glassWaste = glassWaste;
+        this.plasticWaste = plasticWaste;
+    }
+
     public String getStreetNumber() {
         return streetNumber;
     }
