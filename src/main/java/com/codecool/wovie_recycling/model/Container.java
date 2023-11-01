@@ -11,9 +11,7 @@ public class Container {
     private Double latitude;
     private Double longitude;
     private int districtNumber;
-    @ManyToOne
-    @JoinColumn(name = "districtId")
-    private District district;
+    private Long districtId;
     private String street;
     @Column(nullable = true)
     private String streetNumber;
@@ -70,13 +68,12 @@ public class Container {
         this.districtNumber = districtNumber;
     }
 
-    public District getDistrict() {
-        return district;
+    public Long getDistrictId() {
+        return districtId;
     }
 
-    public void setDistrict(District district) {
-        this.district = district;
-        district.addContainer(this);
+    public void setDistrictId(Long districtId) {
+        this.districtId = districtId;
     }
 
     public String getStreet() {

@@ -2,7 +2,6 @@ package com.codecool.wovie_recycling.model;
 
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -13,10 +12,9 @@ public class District {
     private Long id;
     private String districtName;
     private int districtNumber;
-    @OneToMany(mappedBy = "district", cascade = CascadeType.ALL)
-    private List<Container> containers = new ArrayList<>();
 
-    protected District(){}
+    protected District() {
+    }
 
     public District(String districtName, int districtNumber) {
         this.districtName = districtName;
@@ -43,18 +41,5 @@ public class District {
         this.districtNumber = districtNumber;
     }
 
-    public List<Container> getContainers() {
-        return containers;
-    }
 
-    public void setContainers(List<Container> containers) {
-        this.containers = containers;
-    }
-
-    public void addContainer(Container container) {
-        containers.add(container);
-        if (container.getDistrict() != this) {
-            container.setDistrict(this);
-        }
-    }
 }
