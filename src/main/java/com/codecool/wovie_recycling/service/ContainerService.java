@@ -2,7 +2,6 @@ package com.codecool.wovie_recycling.service;
 
 import com.codecool.wovie_recycling.runner.FeatureDTO;
 import com.codecool.wovie_recycling.runner.GeometryDTO;
-import com.codecool.wovie_recycling.exception.ContainerNotFoundException;
 import com.codecool.wovie_recycling.model.Container;
 import com.codecool.wovie_recycling.model.District;
 import com.codecool.wovie_recycling.repository.ContainerRepository;
