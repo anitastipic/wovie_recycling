@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ContainerService {
@@ -32,9 +33,8 @@ public class ContainerService {
         return containerRepository.save(container);
     }
 
-    public Container findById(long id) throws ContainerNotFoundException {
-        return containerRepository.findById(id)
-                .orElseThrow(ContainerNotFoundException::new);
+    public Optional<Container> findById(long id) {
+        return containerRepository.findById(id);
     }
 
     @Transactional
