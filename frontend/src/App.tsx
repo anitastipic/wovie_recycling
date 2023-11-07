@@ -1,13 +1,12 @@
-import './App.css'
+import React from "react";
+import Navbar from "./components/Navbar.tsx";
 
-function App() {
+const App: React.FC = () => {
 
     return (
-        <>
-            <h1 className="text-4xl font-bold underline">
-                Hello!
-            </h1>
-        </>
+        <div className="bg-gray-800 min-h-screen">
+            <Navbar/>
+        </div>
     )
 }
 
