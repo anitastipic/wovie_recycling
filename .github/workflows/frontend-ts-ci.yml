@@ -17,15 +17,25 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '19.5.0'
-          cache: 'npm'
-          cache-dependency-path: frontend/package-lock.json
+
+      - name: Cache node modules
+        uses: actions/cache@v3
+        with:
+          path: |
+            frontend/node_modules
+          key: ${{ runner.os }}-frontend-${{ hashFiles('frontend/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-frontend-
+
       - name: Install dependencies
         run: npm install
         working-directory: ./frontend
+
       - name: Build frontend
         run: npm run build
         working-directory: ./frontend
