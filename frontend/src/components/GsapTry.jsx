@@ -16,7 +16,7 @@ function GsapTry() {
                     toggleActions: "play pause reverse reverse",
                 },
                 y: 500,
-                duration: 10
+                duration: 3,
             });
 
         return () => {
