@@ -1,25 +1,13 @@
 import React from "react";
-import Navbar from "./components/Navbar.tsx";
-import TypeWriter from "./components/TypeWriter.tsx";
 import ReactSpringTry from "./components/ReactSpringTry.tsx";
+import MapVideo from "./components/MapVideo.tsx";
 
 const App: React.FC = () => {
 
     return (
         <div className="bg-gray-800 min-h-screen">
             <ReactSpringTry/>
-            <Navbar/>
-            <TypeWriter></TypeWriter>
-            <div className="relative w-full overflow-hidden" style={{ paddingTop: '25.3%' }}> {/* 16:9 Aspect Ratio */}
-                <video
-                    className="absolute top-0 left-0 w-full h-full object-cover"
-                    src="../src/images/wovie-video.mp4"
-                    autoPlay
-                    muted
-                    playsInline>
-                    Your browser does not support the video tag.
-                </video>
-            </div>
+            <MapVideo/>
         </div>
     )
 }
