@@ -41,6 +41,6 @@ function GsapTry() {
             </div>
         </>
     );
-};
+}
 
 export default GsapTry;
