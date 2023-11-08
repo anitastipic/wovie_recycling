@@ -1,31 +1,29 @@
-import { useSpring, animated } from "@react-spring/web";
-import { useState } from "react";
-function ReactSpring() {
-    // State to keep track of the animation toggle
-    const [state, toggle] = useState(true);
-    // Define the animation using the useSpring hook
-    const { x } = useSpring({
-        from: { x: 0 }, // Starting value of the animated property
-        x: state ? 1 : 0, // Ending value of the animated property based on the state
-        config: { duration: 1000 }, // Configuration for the animation, specifying the duration
-    });
-    // Return the animated component
+import React from "react";
+import { Parallax, ParallaxLayer } from '@react-spring/parallax';
+
+
+const ReactSpring: React.FC = () => {
     return (
-        <div onClick={() => toggle(!state)}>
-            <animated.div
-                style={{
-                    opacity: x.to({ range: [0, 1], output: [0.3, 1] }),
-                    transform: x
-                        .to({
-                            range: [0, 0.25, 0.35, 0.45, 0.55, 0.65, 0.75, 1],
-                            output: [1, 0.97, 0.9, 1.1, 0.9, 1.1, 1.03, 1],
-                        })
-                        .to((x) => `scale(${x})`),
-                }}
-            >
-                Hello React Spring
-            </animated.div>
-        </div>
+        <>
+            <Parallax pages={1} style={{top: '0', left: '0'}}>
+                <ParallaxLayer offset={0} speed={2.5}>
+                <img className="object-contain h-40 w-30" src="../../src/images/waste/6.png"/>
+                </ParallaxLayer>
+                <img className="object-contain h-40 w-30" src="../../src/images/waste/eierschale.png"/>
+                <img className="object-contain h-40 w-30" src="../../src/images/waste/box.png"/>
+                <img className="object-contain h-40 w-30" src="../../src/images/waste/carrot.png"/>
+                <img className="object-contain h-40 w-30" src="../../src/images/waste/green-apple.png"/>
+                <img className="object-contain h-40 w-30" src="../../src/images/waste/green-can.png"/>
+                <img className="object-contain h-40 w-30" src="../../src/images/waste/green-plastic-bottle.png"/>
+                <img className="object-contain h-40 w-30" src="../../src/images/waste/grey-plasticbottle.png"/>
+                <img className="object-contain h-40 w-30" src="../../src/images/waste/11.png"/>
+                <img className="object-contain h-40 w-30" src="../../src/images/waste/glassbottle.png"/>
+                <img className="object-contain h-40 w-30" src="../../src/images/waste/papercup.png"/>
+                <img className="object-contain h-40 w-30" src="../../src/images/waste/red-apple.png"/>
+                <img className="object-contain h-40 w-30" src="../../src/images/waste/watermelon.png"/>
+                <img className="object-contain h-40 w-30" src="../../src/images/waste/orange%20can.png"/>
+            </Parallax>
+        </>
     );
 }
 export default ReactSpring;
