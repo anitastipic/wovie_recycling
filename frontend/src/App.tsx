@@ -1,5 +1,5 @@
 import React from "react";
-import GsapTry from "./components/GsapTry.jsx";
+import GsapTry from "./components/GsapTry/GsapTry.js";
 
 const App: React.FC = () => {
 

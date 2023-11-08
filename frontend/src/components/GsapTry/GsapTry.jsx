@@ -37,7 +37,7 @@ function GsapTry() {
                     />
                 </div>
                 <div className="h-80 w-full bg-amber-500"></div>
-                <img className="w-[870px] h-[360px] -ml-40" src="../../src/images/bin.png" alt="Bin"></img>
+                <img className="w-[870px] h-[360px] -ml-40" src="../../images/bin.png" alt="Bin"></img>
             </div>
         </>
     );
