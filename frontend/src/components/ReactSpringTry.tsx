@@ -1,6 +1,6 @@
 import { useSpring, animated } from "@react-spring/web";
-import React, { useState } from "react";
-const ReactSpringTry: React.FC = () =>  {
+import { useState } from "react";
+function ReactSpring() {
     // State to keep track of the animation toggle
     const [state, toggle] = useState(true);
     // Define the animation using the useSpring hook
@@ -28,4 +28,4 @@ const ReactSpringTry: React.FC = () =>  {
         </div>
     );
 }
-export default ReactSpringTry;
+export default ReactSpring;
