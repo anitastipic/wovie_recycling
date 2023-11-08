@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "./components/Navbar.tsx";
 
-const App: React.FC = () => {
+const Home: React.FC = () => {
 
     return (
         <div className="bg-gray-800 min-h-screen">
@@ -10,4 +10,4 @@ const App: React.FC = () => {
     )
 }
 
-export default App
+export default Home
