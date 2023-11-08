@@ -1,11 +1,13 @@
 import React from "react";
 import Navbar from "./components/Navbar.tsx";
 import TypeWriter from "./components/TypeWriter.tsx";
+import ReactSpringTry from "./components/ReactSpringTry.tsx";
 
-const Home: React.FC = () => {
+const App: React.FC = () => {
 
     return (
         <div className="bg-gray-800 min-h-screen">
+            <ReactSpringTry/>
             <Navbar/>
             <TypeWriter></TypeWriter>
             <div className="relative w-full overflow-hidden" style={{ paddingTop: '25.3%' }}> {/* 16:9 Aspect Ratio */}
@@ -23,4 +25,4 @@ const Home: React.FC = () => {
 }
 
 
-export default Home
+export default App
