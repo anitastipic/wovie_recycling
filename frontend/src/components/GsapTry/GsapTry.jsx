@@ -18,13 +18,28 @@ function GsapTry() {
     useEffect(() => {
         gsap.registerPlugin(ScrollTrigger);
 
-        const timeline = gsap.timeline({});
-        timeline.fromTo("#waste1", {y: 0}, {y: "150vh", duration: 95, ease: "none", rotation:50});
-        timeline.fromTo("#waste2", {y:0},{y: "150vh", duration: 75, ease: "none", rotation:100}, "<");
+        const timeline1 = gsap.timeline({});
+        timeline1.fromTo("#waste1", {y: 0}, {y: "150vh", duration: 95, ease: "none", rotation: 50});
+        timeline1.fromTo("#waste2", {y: 0}, {y: "150vh", duration: 75, ease: "none", rotation: 100}, "<");
+        timeline1.fromTo("#waste3", {y: 0}, {y: "150vh", duration: 95, ease: "none", rotation: 70}, "<");
+
+        const timeline2 = gsap.timeline({});
+        timeline2.fromTo("#waste4", {y: 0}, {y: "100vh", duration: 55, ease: "none", rotation: 30}, "<");
+        timeline2.fromTo("#waste5", {y: 0}, {y: "100vh", duration: 45, ease: "none", rotation: 60}, "<");
+        timeline2.fromTo("#waste6", {y: 0}, {y: "100vh", duration: 85, ease: "none", rotation: 20}, "<");
+        timeline2.fromTo("#waste7", {y: 0}, {y: "100vh", duration: 35, ease: "none", rotation: 10}, "<");
 
         ScrollTrigger.create({
-            animation: timeline,
-            trigger: "#waste1",
+            animation: timeline1,
+            trigger: ".wasteContainer1",
+            start: "top top",
+            scrub: true,
+            markers: true,
+        })
+
+        ScrollTrigger.create({
+            animation: timeline2,
+            trigger: ".wasteContainer2",
             start: "top top",
             scrub: true,
             markers: true,
@@ -41,7 +56,7 @@ function GsapTry() {
                 <div className="gsapTry h-screen bg-amber-50">
                     <div className="flex-row bg-amber-100">
                         <div className="h-10 bg-amber-200"></div>
-                        <div className="wateContainer1 flex">
+                        <div className="wasteContainer1 flex">
                             <img
                                 id="waste1"
                                 className="waste object-contain h-[450px] w-[500px]"
@@ -56,29 +71,31 @@ function GsapTry() {
                             />
                             <img
                                 id="waste3"
-                                className="waste object-contain h-[370px] w-[420px]"
+                                className="waste object-contain h-[320px] w-[370px]"
                                 src="../../../src/images/waste/waste3.png"
                                 alt="Description for waste 3"
                             />
                         </div>
-                        <img
-                            id="waste4"
-                            className="waste object-contain h-[350px] w-[400px]"
-                            src="../../../src/images/waste/waste4.png"
-                            alt="Description for waste 4"
-                        />
-                        <img
-                            id="waste5"
-                            className="waste object-contain h-[350px] w-[400px]"
-                            src="../../../src/images/waste/waste5.png"
-                            alt="Description for waste 5"
-                        />
-                        <img
-                            id="waste6"
-                            className="waste object-contain h-[350px] w-[400px]"
-                            src="../../../src/images/waste/waste6.png"
-                            alt="Description for waste 6"
-                        />
+                        <div className="wasteContainer2 flex">
+                            <img
+                                id="waste4"
+                                className="waste object-contain h-[350px] w-[400px]"
+                                src="../../../src/images/waste/waste4.png"
+                                alt="Description for waste 4"
+                            />
+                            <img
+                                id="waste5"
+                                className="waste object-contain h-[350px] w-[400px]"
+                                src="../../../src/images/waste/waste5.png"
+                                alt="Description for waste 5"
+                            />
+                            <img
+                                id="waste6"
+                                className="waste object-contain h-[350px] w-[400px]"
+                                src="../../../src/images/waste/waste6.png"
+                                alt="Description for waste 6"
+                            />
+                        </div>
                         <img
                             id="waste7"
                             className="waste object-contain h-[350px] w-[400px]"
