@@ -23,10 +23,19 @@ function GsapTry() {
             .to("#waste1", {y: "343vh", duration: 2, rotation: 245, autoAlpha: 100, ease: "none"}, 0.3)
             .to("#waste2", {y: "344vh", duration: 2.5, rotation: 228, autoAlpha: 100, ease: "none"}, "<")
             .to("#waste3", {y: "345vh", duration: 2, rotation: 228, autoAlpha: 100, ease: "none"}, "<")
-            .to("#waste4", {y: "323vh", duration: 2, rotation: 765, autoAlpha: 100, ease: "none"}, "<0.3")
-            .to("#waste5", {y: "300vh", duration: 2, rotation: 220, autoAlpha: 100, ease: "none"}, "<")
-            .to("#waste6", {y: "300vh", duration: 2, rotation: 228, autoAlpha: 100, ease: "none"}, "<")
-            .to("#waste6", {y: "300vh", duration: 2, rotation: 228, autoAlpha: 100, ease: "none"}, "<");
+            .to("#waste4", {y: "323vh", duration: 2, rotation: 765, autoAlpha: 100, ease: "none"}, "<0.2")
+            .to("#waste5", {y: "300vh", duration: 2, rotation: 220, autoAlpha: 100, ease: "none"}, "<0.2")
+            .to("#waste6", {y: "300vh", duration: 2, rotation: 228, autoAlpha: 100, ease: "none"}, "<-0.15")
+            .to("#waste7", {y: "300vh", duration: 2, rotation: 228, autoAlpha: 100, ease: "none"}, "<0.3")
+            .to("#waste8", {y: "280vh", duration: 2, rotation: 228, autoAlpha: 100, ease: "none"}, "<")
+            .to("#waste9", {y: "280vh", duration: 2, rotation: 228, autoAlpha: 100, ease: "none"}, "<0.25")
+            .to("#waste10", {y: "280vh", duration: 2, rotation: 228, autoAlpha: 100, ease: "none"}, "<0.3")
+            .to("#waste11", {y: "300vh", duration: 2, rotation: 228, autoAlpha: 100, ease: "none"}, "<")
+            .to("#waste12", {y: "300vh", duration: 2, rotation: 228, autoAlpha: 100, ease: "none"}, "<")
+            .to("#waste13", {y: "300vh", duration: 2, rotation: 228, autoAlpha: 100, ease: "none"}, "<0.3")
+            .to("#waste14", {y: "300vh", duration: 2, rotation: 228, autoAlpha: 100, ease: "none"}, "<")
+            .to("#waste15", {y: "300vh", duration: 2, rotation: 228, autoAlpha: 100, ease: "none"}, "<");
+
 
         ScrollTrigger.create({
             animation: timeline1,
@@ -44,12 +53,11 @@ function GsapTry() {
                 pin: ".wasteScreen",
                 markers: true,
                 scrub: 2,
-                start: "top bottom",
-                end: "+=1500 bottom"
+                start: "bottom bottom",
+                end: "+=900 center"
             },
 
         });
-
 
 
         return () => {
@@ -100,7 +108,7 @@ function GsapTry() {
                         <div className="waste5Container">
                             <img
                                 id="waste5"
-                                className="waste invisible object-contain h-[350px] max-w-fit -mt-[150px] filter blur-[1.5px]"
+                                className="waste invisible object-contain h-[350px] max-w-fit -mt-[150px] ml-[200px] filter blur-[1.5px]"
                                 src="../../../src/images/waste/waste4.png"
                                 alt="waste item - red apple"
                             />
@@ -187,7 +195,7 @@ function GsapTry() {
                         <div className="waste15Container">
                             <img
                                 id="waste15"
-                                className="waste invisible object-contain h-[130px] ml-[140px] -max-w-fit"
+                                className="waste invisible object-contain h-[130px] ml-[270px] -max-w-fit filter blur-[0.5px]"
                                 src="../../../src/images/waste/waste13.png"
                                 alt="waste item - eggshell"
                             />
