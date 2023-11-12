@@ -18,144 +18,189 @@ function GsapTry() {
     useEffect(() => {
         gsap.registerPlugin(ScrollTrigger);
 
-        const timeline1 = gsap.timeline({});
-        timeline1.fromTo("#waste1", {y: 0}, {y: "150vh", duration: 95, ease: "none", rotation: 50});
-        timeline1.fromTo("#waste2", {y: 0}, {y: "150vh", duration: 75, ease: "none", rotation: 100}, "<");
-        timeline1.fromTo("#waste3", {y: 0}, {y: "150vh", duration: 95, ease: "none", rotation: 70}, "<");
-
-        const timeline2 = gsap.timeline({});
-        timeline2.fromTo("#waste4", {y: 0}, {y: "100vh", duration: 55, ease: "none", rotation: 30}, "<");
-        timeline2.fromTo("#waste5", {y: 0}, {y: "100vh", duration: 45, ease: "none", rotation: 60}, "<");
-        timeline2.fromTo("#waste6", {y: 0}, {y: "100vh", duration: 85, ease: "none", rotation: 20}, "<");
-        timeline2.fromTo("#waste7", {y: 0}, {y: "100vh", duration: 35, ease: "none", rotation: 10}, "<");
+        const timeline1 = gsap.timeline();
+        timeline1
+            .to("#waste1", {y: "343vh", duration: 2, rotation: 245, autoAlpha: 100, ease: "none"}, 0.3)
+            .to("#waste2", {y: "344vh", duration: 2.5, rotation: 228, autoAlpha: 100, ease: "none"}, "<")
+            .to("#waste3", {y: "345vh", duration: 2, rotation: 228, autoAlpha: 100, ease: "none"}, "<")
+            .to("#waste4", {y: "323vh", duration: 2, rotation: 765, autoAlpha: 100, ease: "none"}, "<0.3")
+            .to("#waste5", {y: "300vh", duration: 2, rotation: 220, autoAlpha: 100, ease: "none"}, "<")
+            .to("#waste6", {y: "300vh", duration: 2, rotation: 228, autoAlpha: 100, ease: "none"}, "<")
+            .to("#waste6", {y: "300vh", duration: 2, rotation: 228, autoAlpha: 100, ease: "none"}, "<");
 
         ScrollTrigger.create({
             animation: timeline1,
-            trigger: ".wasteContainer1",
+            trigger: ".wasteScreen",
             start: "top top",
+            end: "bottom bottom",
             scrub: true,
             markers: true,
-        })
+        });
 
-        ScrollTrigger.create({
-            animation: timeline2,
-            trigger: ".wasteContainer2",
-            start: "top top",
-            scrub: true,
-            markers: true,
-        })
+
+        gsap.from(".endContainer", {
+            scrollTrigger: {
+                trigger: ".trigger",
+                pin: ".wasteScreen",
+                markers: true,
+                scrub: 2,
+                start: "top bottom",
+                end: "+=1500 bottom"
+            },
+
+        });
+
+
 
         return () => {
             ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
         };
     }, []);
 
-    return (
-        <>
-            <div className="">
-                <div className="gsapTry h-screen bg-amber-50">
-                    <div className="flex-row bg-amber-100">
-                        <div className="h-10 bg-amber-200"></div>
-                        <div className="wasteContainer1 flex">
+    return (<>
+        <div className="gsapTryContainer h-screen">
+            <div className="gsapTry">
+                <div className="h-[200vh]"></div>
+                <div className=" wasteScreen bg-amber-100 flex-row overflow-scroll">
+                    <div className="wasteRow1 flex">
+                        <div className="waste1Container">
                             <img
                                 id="waste1"
-                                className="waste object-contain h-[450px] w-[500px]"
+                                className="waste invisible object-contain h-[150px] max-w-fit"
+                                src="../../../src/images/waste/waste14.png"
+                                alt="waste item - carrot"
+                            />
+                        </div>
+                        <div className="waste2Container">
+                            <img
+                                id="waste2"
+                                className="waste invisible object-contain h-[160px] max-w-fit ml-40"
+                                src="../../../src/images/waste/waste7.png"
+                                alt="waste item - grey plastic bottle"
+                            />
+                        </div>
+                        <div className="waste3Container">
+                            <img
+                                id="waste3"
+                                className="waste invisible object-contain h-[350px] max-w-fit filter blur-[2px] ml-56"
                                 src="../../../src/images/waste/waste1.png"
                                 alt="waste item - plastic bag"
                             />
+                        </div>
+                    </div>
+                    <div className="wasteRow2 flex">
+                        <div className="waste4Container">
                             <img
-                                id="waste2"
-                                className="waste object-contain h-[350px] w-[400px] ml-20 mr-24 mt-32"
+                                id="waste4"
+                                className="waste invisible object-contain h-[120px] max-w-fit -mt-[180px] ml-14 filter blur-[0.5px]"
+                                src="../../../src/images/waste/waste3.png"
+                                alt="waste item - watermelon"
+                            />
+                        </div>
+                        <div className="waste5Container">
+                            <img
+                                id="waste5"
+                                className="waste invisible object-contain h-[350px] max-w-fit -mt-[150px] filter blur-[1.5px]"
+                                src="../../../src/images/waste/waste4.png"
+                                alt="waste item - red apple"
+                            />
+                        </div>
+                        <div className="waste6Container">
+                            <img
+                                id="waste6"
+                                className="waste invisible object-contain h-[100px] max-w-fit -mt-[50px] -ml-[50px]"
+                                src="../../../src/images/waste/waste5.png"
+                                alt="waste item - paper cup"
+                            />
+                        </div>
+                        <div className="waste7Container">
+                            <img
+                                id="waste7"
+                                className="waste invisible object-contain h-[200px] max-w-fit filter blur-[1px] mt-[50px]"
+                                src="../../../src/images/waste/waste9.png"
+                                alt="waste item - green soda can"
+                            />
+                        </div>
+                    </div>
+                    <div className="wasteRow3 flex">
+                        <div className="waste8Container">
+                            <img
+                                id="waste8"
+                                className="waste invisible object-contain max-w-fit h-[100px] -mt-[200px] ml-7"
+                                src="../../../src/images/waste/waste8.png"
+                                alt="waste item - green plastic bottle"
+                            />
+                        </div>
+                        <div className="waste9Container">
+                            <img
+                                id="waste9"
+                                className="waste invisible object-contain h-[200px] max-w-fit filter blur-[1.3px]"
                                 src="../../../src/images/waste/waste2.png"
                                 alt="waste item - red soda can"
                             />
-                            <img
-                                id="waste3"
-                                className="waste object-contain h-[320px] w-[370px]"
-                                src="../../../src/images/waste/waste3.png"
-                                alt="Description for waste 3"
-                            />
                         </div>
-                        <div className="wasteContainer2 flex">
+                        <div className="waste10Container">
                             <img
-                                id="waste4"
-                                className="waste object-contain h-[350px] w-[400px]"
-                                src="../../../src/images/waste/waste4.png"
-                                alt="Description for waste 4"
-                            />
-                            <img
-                                id="waste5"
-                                className="waste object-contain h-[350px] w-[400px]"
-                                src="../../../src/images/waste/waste5.png"
-                                alt="Description for waste 5"
-                            />
-                            <img
-                                id="waste6"
-                                className="waste object-contain h-[350px] w-[400px]"
+                                id="waste10"
+                                className="waste invisible object-contain h-[80px] max-w-fit ml-40 -mt-32"
                                 src="../../../src/images/waste/waste6.png"
-                                alt="Description for waste 6"
+                                alt="waste item - pink can"
                             />
                         </div>
-                        <img
-                            id="waste7"
-                            className="waste object-contain h-[350px] w-[400px]"
-                            src="../../../src/images/waste/waste7.png"
-                            alt="Description for waste 7"
-                        />
-                        <img
-                            id="waste8"
-                            className="waste object-contain h-[350px] w-[400px]"
-                            src="../../../src/images/waste/waste8.png"
-                            alt="Description for waste 8"
-                        />
-                        <img
-                            id="waste9"
-                            className="waste object-contain h-[350px] w-[400px]"
-                            src="../../../src/images/waste/waste9.png"
-                            alt="Description for waste 9"
-                        />
-                        <img
-                            id="waste10"
-                            className="waste object-contain h-[350px] w-[400px]"
-                            src="../../../src/images/waste/waste10.png"
-                            alt="Description for waste 10"
-                        />
-                        <img
-                            id="waste11"
-                            className="waste object-contain h-[350px] w-[400px]"
-                            src="../../../src/images/waste/waste11.png"
-                            alt="Description for waste 11"
-                        />
-                        <img
-                            id="waste12"
-                            className="waste object-contain h-[350px] w-[400px]"
-                            src="../../../src/images/waste/waste12.png"
-                            alt="Description for waste 12"
-                        />
-                        <img
-                            id="waste13"
-                            className="waste object-contain h-[350px] w-[400px]"
-                            src="../../../src/images/waste/waste13.png"
-                            alt="Description for waste 13"
-                        />
-                        <img
-                            id="waste14"
-                            className="waste object-contain h-[350px] w-[400px]"
-                            src="../../../src/images/waste/waste14.png"
-                            alt="Description for waste 14"
-                        />
-                        <img
-                            id="waste15"
-                            className="waste object-contain h-[350px] w-[400px]"
-                            src="../../../src/images/waste/waste15.png"
-                            alt="Description for waste 15"
-                        />
                     </div>
-                    <div className="h-80 w-full bg-amber-500"></div>
+                    <div className="wasteRow4 flex">
+
+                        <div className="waste11Container">
+                            <img
+                                id="waste11"
+                                className="waste invisible object-contain h-[150px] max-w-fit mt-12 "
+                                src="../../../src/images/waste/waste10.png"
+                                alt="waste item - banana"
+                            />
+                        </div>
+                        <div className="waste12Container">
+                            <img
+                                id="waste12"
+                                className="waste invisible object-contain h-[350px] max-w-fit -mt-[150px] ml-72 filter blur-[1.3px]"
+                                src="../../../src/images/waste/waste15.png"
+                                alt="waste item - cardboard box"
+                            />
+                        </div>
+                    </div>
+                    <div className="wasteRow5 flex">
+                        <div className="waste13Container">
+                            <img
+                                id="waste13"
+                                className="waste invisible object-contain h-[150px] max-w-fit ml-[370px] -mt-32 "
+                                src="../../../src/images/waste/waste11.png"
+                                alt="waste item - green apple"
+                            />
+                        </div>
+                        <div className="waste14Container">
+                            <img
+                                id="waste14"
+                                className="waste invisible object-contain h-[200px] max-w-fit -ml-[200px]"
+                                src="../../../src/images/waste/waste12.png"
+                                alt="waste item - broken glass bottle"
+                            />
+                        </div>
+                        <div className="waste15Container">
+                            <img
+                                id="waste15"
+                                className="waste invisible object-contain h-[130px] ml-[140px] -max-w-fit"
+                                src="../../../src/images/waste/waste13.png"
+                                alt="waste item - eggshell"
+                            />
+                        </div>
+                    </div>
+                    <div className="bg-blue-50 endContainer h-[200vh] w-screen relative opacity-0">
+                        <div className="trigger h-1 bg-black absolute bottom-0 "></div>
+                    </div>
+                    <div className="bg-green-100 h-[100vh]"></div>
                 </div>
             </div>
-        </>
-    );
+        </div>
+    </>);
 }
 
 export default GsapTry;
