@@ -1,12 +1,12 @@
 import React from "react";
-import GsapTry from "./components/GsapTry/GsapTry.jsx";
+import GsapTry from "./components/GsapTry.tsx";
 
 const App: React.FC = () => {
 
 
     return (
         <div>
-            <GsapTry></GsapTry>
+            <GsapTry/>
         </div>
     )
 }
