@@ -5,6 +5,9 @@ import com.codecool.wovie_recycling.repository.UserRepository;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.security.sasl.AuthenticationException;
+
+
 @Service
 public class UserService {
 
@@ -28,12 +31,12 @@ public class UserService {
     }
 
 
-    public User authenticate(String username, String password) {
+    public String authenticate(String username, String password) throws AuthenticationException {
         User user = userRepository.findByUsername(username);
-        if (user != null && passwordEncoder.matches(password, user.getPassword())) {
-            return user;
+        if (user == null || !passwordEncoder.matches(password, user.getPassword())) {
+            throw new AuthenticationException("Invalid username or password");
         }
-        return null;
+        return tokenService.generateToken(user.getUsername());
     }
 
 
