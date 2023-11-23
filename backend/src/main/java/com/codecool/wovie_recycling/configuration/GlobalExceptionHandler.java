@@ -6,10 +6,22 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import javax.security.sasl.AuthenticationException;
+
 @ControllerAdvice
 public class GlobalExceptionHandler {
     @ExceptionHandler(EntityNotFoundException.class)
-    public ResponseEntity<Object> handleContainerNotFoundException(EntityNotFoundException ex) {
-        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+    public ResponseEntity<Object> handleEntityNotFoundException(EntityNotFoundException ex) {
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(ex.getMessage());
+
+    }
+
+    @ExceptionHandler(AuthenticationException.class)
+    public ResponseEntity<Object> handleAuthenticationException(AuthenticationException ex) {
+        return ResponseEntity
+                .status(HttpStatus.UNAUTHORIZED)
+                .body(ex.getMessage());
     }
 }
