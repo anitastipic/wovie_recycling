@@ -9,25 +9,24 @@ import org.springframework.stereotype.Service;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final UserManagementService userManagementService;
     private final BCryptPasswordEncoder passwordEncoder;
     private final TokenService tokenService;
 
-    public UserService(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder, TokenService tokenService) {
+    public UserService(UserRepository userRepository, UserManagementService userManagementService, BCryptPasswordEncoder passwordEncoder, TokenService tokenService) {
         this.userRepository = userRepository;
+        this.userManagementService = userManagementService;
         this.passwordEncoder = passwordEncoder;
         this.tokenService = tokenService;
     }
 
-    public String createNewUser(User user) {
+    public User createNewUser(User user) {
         String hashedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(hashedPassword);
-        saveUser(user);
-        return "User created!";
+        user.setUsername(user.getUsername());
+        return userManagementService.saveUser(user);
     }
 
-    public void saveUser(User user) {
-        userRepository.save(user);
-    }
 
     public User authenticate(String username, String password) {
         User user = userRepository.findByUsername(username);

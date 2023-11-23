@@ -4,7 +4,6 @@ import com.codecool.wovie_recycling.model.User;
 import com.codecool.wovie_recycling.repository.UserRepository;
 import com.codecool.wovie_recycling.service.UserService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,7 +27,7 @@ public class UserController {
 
     @Transactional
     @PostMapping("/register")
-    public String registerNewUserAccount(@RequestBody User user) {
+    public User registerNewUserAccount(@RequestBody User user) {
         return userService.createNewUser(user);
     }
 
