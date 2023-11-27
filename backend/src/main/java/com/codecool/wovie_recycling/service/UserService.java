@@ -2,7 +2,7 @@ package com.codecool.wovie_recycling.service;
 
 import com.codecool.wovie_recycling.model.User;
 import com.codecool.wovie_recycling.repository.UserRepository;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.security.sasl.AuthenticationException;
@@ -10,13 +10,12 @@ import javax.security.sasl.AuthenticationException;
 
 @Service
 public class UserService {
-
     private final UserRepository userRepository;
     private final UserManagementService userManagementService;
-    private final BCryptPasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
     private final TokenService tokenService;
 
-    public UserService(UserRepository userRepository, UserManagementService userManagementService, BCryptPasswordEncoder passwordEncoder, TokenService tokenService) {
+    public UserService(UserRepository userRepository, UserManagementService userManagementService, PasswordEncoder passwordEncoder, TokenService tokenService) {
         this.userRepository = userRepository;
         this.userManagementService = userManagementService;
         this.passwordEncoder = passwordEncoder;

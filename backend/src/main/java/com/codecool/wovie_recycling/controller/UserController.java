@@ -15,17 +15,14 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
     private final UserRepository userRepository;
-    private final BCryptPasswordEncoder passwordEncoder;
 
     private final UserService userService;
 
-    public UserController(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder, UserService userService) {
+    public UserController(UserRepository userRepository, UserService userService) {
         this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
         this.userService = userService;
     }
 
-    @Transactional
     @PostMapping("/register")
     public User registerNewUserAccount(@RequestBody User user) {
         return userService.createNewUser(user);
