@@ -32,3 +32,5 @@ jobs:
         cache: maven
     - name: Build Backend with Maven
       run: mvn -B package --file backend/pom.xml
+      env: 
+        tokens.secret: ${{ secrets.TOKENS_SECRET }}
