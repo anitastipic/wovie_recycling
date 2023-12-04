@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import javax.security.sasl.AuthenticationException;
+import java.text.ParseException;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
@@ -22,6 +23,13 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Object> handleAuthenticationException(AuthenticationException ex) {
         return ResponseEntity
                 .status(HttpStatus.UNAUTHORIZED)
+                .body(ex.getMessage());
+    }
+
+    @ExceptionHandler(ParseException.class)
+    public ResponseEntity<Object> handleParseException(ParseException ex) {
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
                 .body(ex.getMessage());
     }
 }
