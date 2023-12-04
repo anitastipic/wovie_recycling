@@ -13,7 +13,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.jose.jws.MacAlgorithm;
+import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
+import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -24,10 +26,11 @@ import javax.crypto.spec.SecretKeySpec;
 public class SecurityConfig {
 
     @Bean
-     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
+     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity, JwtDecoder jwtDecoder) throws Exception {
          return httpSecurity
                  .csrf(AbstractHttpConfigurer::disable)
                  .authorizeHttpRequests(request -> request.anyRequest().permitAll())
+                 .oauth2ResourceServer(oauth -> oauth.jwt(jwtConfigurer -> jwtConfigurer.decoder(jwtDecoder)))
                  .build();
      }
 
@@ -48,6 +51,10 @@ public class SecurityConfig {
         return new NimbusJwtEncoder(immutableSecret);
     }
 
-
+    @Bean
+    JwtDecoder jwtDecoder(@Value("${tokens.secret}") String secret, @Value("${tokens.algorithm}") MacAlgorithm macAlgorithm) {
+        var secretKey = new SecretKeySpec(secret.getBytes(), macAlgorithm.getName());
+        return NimbusJwtDecoder.withSecretKey(secretKey).build();
+    }
 
 }
