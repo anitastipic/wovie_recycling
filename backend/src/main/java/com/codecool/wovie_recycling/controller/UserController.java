@@ -2,6 +2,8 @@ package com.codecool.wovie_recycling.controller;
 
 import com.codecool.wovie_recycling.model.User;
 import com.codecool.wovie_recycling.service.UserService;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -21,7 +23,7 @@ import java.util.Optional;
 public class UserController {
     private final UserService userService;
     private final AuthenticationProvider authenticationProvider;
-    private JwtEncoder jwtEncoder;
+    private final JwtEncoder jwtEncoder;
 
     public UserController(UserService userService, AuthenticationProvider authenticationProvider, JwtEncoder jwtEncoder) {
         this.userService = userService;
@@ -35,7 +37,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    private Optional<String> login(@RequestBody User user,  @Value("${tokens.algorithm}") MacAlgorithm macAlgorithm) {
+    private Optional<String> login(@RequestBody User user,  @Value("${tokens.algorithm}") MacAlgorithm macAlgorithm, HttpServletResponse response) {
         var usernamePasswordAuthentication = new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword());
 
         var authenticatedAuthentication = this.authenticationProvider.authenticate(usernamePasswordAuthentication);
@@ -45,10 +47,16 @@ public class UserController {
                     JwtClaimsSet.builder()
                             .subject(authenticatedAuthentication.getName())
                             .build()));
+
+            Cookie cookie = new Cookie("auth_token", token.getTokenValue());
+            cookie.setHttpOnly(true);
+            cookie.setPath("/");
+            response.addCookie(cookie);
+
             return Optional.of(token.getTokenValue());
         }
-
         return Optional.empty();
     }
+
 
 }
