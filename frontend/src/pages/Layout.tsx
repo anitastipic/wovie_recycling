@@ -4,9 +4,8 @@ import Navbar from "../components/Navbar.tsx";
 
 export default function Layout() {
     return(
-        <div className="bg-third">
-            <Navbar/>
-            <Outlet />
+        <div className="">
+            <Outlet/>
         </div>
     );
 }
