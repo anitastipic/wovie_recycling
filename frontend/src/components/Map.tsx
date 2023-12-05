@@ -77,7 +77,23 @@ export default function Map() {
         }
     };
 
-    type MarkerColor = "black" | "green" | "yellow" | "blue" | "red" | "orange-dark" | "orange" | "blue-dark" | "cyan" | "purple" | "violet" | "pink" | "green-dark" | "green-light" | "white" | `#${string}`;
+    type MarkerColor =
+        "black"
+        | "green"
+        | "yellow"
+        | "blue"
+        | "red"
+        | "orange-dark"
+        | "orange"
+        | "blue-dark"
+        | "cyan"
+        | "purple"
+        | "violet"
+        | "pink"
+        | "green-dark"
+        | "green-light"
+        | "white"
+        | `#${string}`;
 
     const createMarkerIcon = (color: MarkerColor) => {
         return L.ExtraMarkers.icon({
@@ -90,16 +106,18 @@ export default function Map() {
     };
 
     return (
-        <div>
-            <select onChange={handleDistrictChange} value={selectedDistrict || ''}>
-                <option value="">All Districts</option>
-                {districts.map(district => (
-                    <option key={district.id} value={district.districtName}>{district.districtName}</option>
-                ))}
-            </select>
-
-            <div id="map" className="h-screen flex items-center justify-center">
-                <MapContainer className="h-[70vh] w-[80vw]" center={[48.208492, 16.373127]} zoom={13} scrollWheelZoom={true}>
+        <div className=" flex items-start justify-evenly">
+            <div className="bg-gray-600 flex justify-evenly p-3 h-[40vh]">
+                <select className="h-5" onChange={handleDistrictChange} value={selectedDistrict || ''}>
+                    <option value="">Wähle einen Bezirk</option>
+                    {districts.map(district => (
+                        <option key={district.id} value={district.districtName}>{district.districtName}</option>
+                    ))}
+                </select>
+            </div>
+            <div id="map" className="">
+                <MapContainer className="h-[70vh] w-[75vw]" center={[48.208492, 16.373127]} zoom={13}
+                              scrollWheelZoom={true}>
                     <TileLayer
                         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
