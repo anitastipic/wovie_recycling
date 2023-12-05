@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "container")
+@CrossOrigin(origins = "http://localhost:5173")
 public class ContainerController {
     private final ContainerService containerService;
 
@@ -23,14 +24,20 @@ public class ContainerController {
         return containerService.findAll();
     }
 
-    @RequestMapping (value = "/id/{id}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
+    @RequestMapping(value = "/id/{id}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
     Container findById(@PathVariable long id) throws EntityNotFoundException {
         return containerService.findById(id)
                 .orElseThrow(EntityNotFoundException::new);
     }
 
+    @RequestMapping(value = "/district/{district}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
+    List<Container> findByDistrictNumber(@PathVariable int district) {
+        return containerService.findByDistrictNumber(district);
+    }
+
     @PostMapping
     @Transactional
+
     public Container save(@RequestBody Container container) {
         return containerService.save(container);
     }

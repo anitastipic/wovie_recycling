@@ -12,6 +12,8 @@ public class Container {
     private Double longitude;
     private int districtNumber;
     private Long districtId;
+
+    private String districtName;
     private String street;
     @Column(nullable = true)
     private String streetNumber;
@@ -38,6 +40,8 @@ public class Container {
         this.glassWaste = glassWaste;
         this.plasticWaste = plasticWaste;
     }
+
+
 
 
     public Long getId() {
@@ -134,5 +138,13 @@ public class Container {
 
     public void setPlasticWaste(Boolean plasticWaste) {
         this.plasticWaste = plasticWaste;
+    }
+
+    public String getDistrictName() {
+        return districtName;
+    }
+
+    public void setDistrictName(String districtName) {
+        this.districtName = districtName;
     }
 }

@@ -47,7 +47,12 @@ public class ContainerService {
                     properties.getPlasticWaste(), properties.getStreetNumber());
             District foundDistrict = districtService.findByDistrictNumber(newContainer.getDistrictNumber());
             newContainer.setDistrictId(foundDistrict.getId());
+            newContainer.setDistrictName(foundDistrict.getDistrictName());
             save(newContainer);
         });
+    }
+
+    public List<Container> findByDistrictNumber(int district) {
+        return containerRepository.findByDistrictNumber(district);
     }
 }

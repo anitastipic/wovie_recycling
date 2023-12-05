@@ -9,5 +9,5 @@ import java.util.List;
 
 @Repository
 public interface ContainerRepository extends JpaRepository<Container, Long> {
-
+    List<Container> findByDistrictNumber(int district);
 }
