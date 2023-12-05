@@ -27,6 +27,8 @@ public class DistrictController {
     @Transactional
     public District save(District district) {return districtService.save(district);}
 
-    @GetMapping("/number/{number}")
+    @GetMapping("/name/{number}")
     public District findByDistrictNumber(@RequestParam int number) {return districtService.findByDistrictNumber(number);}
+
+
 }

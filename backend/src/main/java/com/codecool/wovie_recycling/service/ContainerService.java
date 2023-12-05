@@ -55,4 +55,6 @@ public class ContainerService {
     public List<Container> findByDistrictNumber(int district) {
         return containerRepository.findByDistrictNumber(district);
     }
+
+    public  List<Container> findByDistrictName(String name) { return containerRepository.findByDistrictName(name);}
 }

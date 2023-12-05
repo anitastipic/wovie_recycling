@@ -1,6 +1,7 @@
 package com.codecool.wovie_recycling.controller;
 
 import com.codecool.wovie_recycling.model.Container;
+import com.codecool.wovie_recycling.model.District;
 import com.codecool.wovie_recycling.service.ContainerService;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.MediaType;
@@ -35,9 +36,11 @@ public class ContainerController {
         return containerService.findByDistrictNumber(district);
     }
 
+    @GetMapping("/district/name/{name}")
+    public  List<Container> findByDistrictName(@PathVariable String name) {return containerService.findByDistrictName(name);}
+
     @PostMapping
     @Transactional
-
     public Container save(@RequestBody Container container) {
         return containerService.save(container);
     }
