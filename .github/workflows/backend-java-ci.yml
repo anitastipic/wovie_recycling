@@ -33,6 +33,6 @@ jobs:
     - name: Build Backend with Maven
       env: 
         TOKENS_SECRET: ${{ secrets.TOKENS_SECRET }}
-        TOKENS_ALGORITHM: ${{ secrets.TOKEN_ALGORITHM }}
+        TOKENS_ALGORITHM: ${{ secrets.TOKENS_ALGORITHM }}
       run: mvn -B package --file backend/pom.xml
     
