@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar.js";
 import MapVideo from "../components/MapVideo.tsx";
 import TypeWriter from "../components/TypeWriter.tsx";
 import GsapTry from "../components/GsapTry.tsx";
+import ViennaVideo from "../components/ViennaVideo.tsx";
 
 
 export default function Home() {
@@ -13,17 +14,20 @@ export default function Home() {
     const nextLineDelay = 1500;
 
     return (
-        <div className="bg-third h-screen">
-            <div className="flex flex-col h-[89.5vh] mt-[10vh] items-center justify-evenly">
-                <div className="mb-7">
+        <div className="bg-third h-[1000vh]">
+            <div className="fixed z-20">
+                <Navbar/>
+            </div>
+            <div className="flex flex-col items-center justify-evenly fixed">
+                <div className="opacity-20 z-0 absolute top-0 left-0">
+                    <ViennaVideo/>
+                </div>
+                <div className="absolute top-[45vh] left-[20vw] w-[60vw] z-10">
                     <TypeWriter
                         text={words}
                         typingDelay={typingDelay}
                         nextWordDelay={nextLineDelay}
                     />
-                </div>
-                <div className="text-white ">
-                    <p>Scroll down</p>
                 </div>
             </div>
         </div>

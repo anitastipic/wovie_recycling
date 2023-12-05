@@ -3,25 +3,8 @@ import {useEffect, useRef, useState} from "react";
 export default function ViennaVideo() {
     const containerRef = useRef<HTMLCanvasElement>(null);
 
-    const [imageNames, setImagesNames] = useState([""]);
-
     useEffect(() => {
-        const imgNames: string[] = [];
-        for (let i = 1; i <= 99; i++) {
-            if (i <= 9) {
-                imgNames.push(`/WoVieErster/footage/WoVieErster_00${i}.jpeg`);
-            } else {
-                imgNames.push(`/WoVieErster/footage/WoVieErster_0${i}.jpeg`);
-            }
-            setImagesNames(imgNames);
-
-        }
-
-    }, []);
-
-
-    useEffect(() => {
-        const frameCount = 200;
+        const frameCount = 400;
         const canvas = containerRef.current;
         if (!canvas) return;
 
@@ -75,7 +58,7 @@ export default function ViennaVideo() {
 
 
     return (
-        <div className="image-sequence-container h-[500vh] w-screen flex  justify-center overflow-hidden ">
+        <div className="image-sequence-container h-[500vh] w-screen flex justify-center overflow-hidden scroll-smooth">
             <canvas ref={containerRef} className="w-[1920px] h-[1080px] fixed"></canvas>
         </div>
     );
