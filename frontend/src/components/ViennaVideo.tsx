@@ -38,6 +38,7 @@ export default function ViennaVideo() {
         };
 
         preloadImages().then(() => {
+            drawFrame(0);
             const handleScroll = () => {
                 const scrollFraction = window.scrollY / (document.body.scrollHeight - window.innerHeight);
                 const frameIndex = Math.min(images.length - 1, Math.floor(scrollFraction * images.length));
@@ -57,7 +58,8 @@ export default function ViennaVideo() {
     }, []);
 
 
-    return (
+
+        return (
         <div className="image-sequence-container h-[500vh] w-screen flex justify-center overflow-hidden scroll-smooth">
             <canvas ref={containerRef} className="w-[1920px] h-[1080px] fixed"></canvas>
         </div>
