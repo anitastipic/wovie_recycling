@@ -1,6 +1,7 @@
 import React, {useState} from "react";
+import Navbar from "./Navbar.tsx";
 
-const UserSignUp: React.FC = () => {
+export default function UserSignUp() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
@@ -18,12 +19,14 @@ const UserSignUp: React.FC = () => {
             },
             body: JSON.stringify(bodyData)
         })
+        window.location.pathname = '/hero';
     }
     return (
-        <div className="bg-third">
-            <div className="h-[89.5vh] w-full flex justify-center items-center">
-                <div className="loginContainer bg-[#F6F5F3] rounded-[15px] text-center h-[50vh] w-[40vh] p-6">
-                    <p className="font-bold text-[20px] mb-5">Create your account</p>
+        <div className="bg-third h-screen ">
+            <Navbar/>
+            <div className="h-screen w-full flex justify-center items-center">
+                <div className="loginContainer bg-[#F6F5F3] rounded-r-2xl text-center h-[50vh] w-[40vh] p-6">
+                    <p className="font-semibold text-[2.5vh] mb-5">Einfach ausfüllen und loslegen!</p>
                     <form className="flex-col space-y-2" onSubmit={handleSubmit}>
                         <label className="label login">Username:</label><br/>
                         <input
@@ -37,12 +40,10 @@ const UserSignUp: React.FC = () => {
                             onChange={(e) => setPassword(e.target.value)}
                         />
                         <br/>
-                        <button className="bg-white hover:border-wovie text-gray-800 font-semibold py-2 px-4 border border-gray-800 rounded shadow" type="submit" onSubmit={() => handleSubmit} >Submit</button>
+                        <button className="bg-white hover:border-wovie text-gray-800 font-semibold py-2 px-4 border border-gray-800 rounded shadow" type="submit" onSubmit={() => handleSubmit} >Registrieren</button>
                     </form>
                 </div>
             </div>
         </div>
     )
 }
-
-export default UserSignUp;
