@@ -6,7 +6,9 @@ import Layout from "./pages/Layout.js";
 import ErrorPage from "./pages/ErrorPage.js";
 import Home from "./pages/Home.js";
 import MapPage from "./pages/MapPage.tsx";
-import ViennaVideo from "./components/ViennaVideo.tsx";
+import UserSignUp from "./components/UserSignUp.tsx";
+import UserLogin from "./components/UserLogin.tsx";
+import UserPage from "./pages/UserPage.tsx";
 
 const router = createBrowserRouter([
     {
@@ -21,6 +23,18 @@ const router = createBrowserRouter([
             {
                 path: "/map",
                 element: <MapPage/>,
+            },
+            {
+                path:"/login",
+                element: <UserLogin/>
+            },
+            {
+                path:'register',
+                element: <UserSignUp/>
+            },
+            {
+                path:"/hero",
+                element: <UserPage/>
             },
 
         ],
