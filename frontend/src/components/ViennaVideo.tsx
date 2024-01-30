@@ -1,23 +1,23 @@
-import {useEffect, useRef, useState} from "react";
+import {useEffect, useRef} from "react";
 
 export default function ViennaVideo() {
     const containerRef = useRef<HTMLCanvasElement>(null);
 
     useEffect(() => {
-        const frameCount = 400;
+        const frameCount = 300;
         const canvas = containerRef.current;
         if (!canvas) return;
 
         const context = canvas.getContext('2d');
         if (!context) return;
 
-        canvas.width = 1920;
-        canvas.height = 1080;
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
 
         const images: HTMLImageElement[] = [];
 
         const currentFrame = (index: number) => (
-            `/WoVieErster/footage/WoVieErster_${index.toString().padStart(3, "0")}.jpeg`
+            `/WoVieErster/footage4/WoVieVierter_${index.toString().padStart(3, "0")}.jpeg`
         );
 
         const preloadImages = () => {
@@ -60,8 +60,8 @@ export default function ViennaVideo() {
 
 
         return (
-        <div className="image-sequence-container h-[500vh] w-screen flex justify-center overflow-hidden scroll-smooth">
-            <canvas ref={containerRef} className="w-[1920px] h-[1080px] fixed"></canvas>
+        <div className="image-sequence-container h-[500vh] w-screen flex justify-center scroll-smooth">
+            <canvas ref={containerRef} className={`w-[${window.innerWidth}] h-[${window.innerHeight}] fixed`}></canvas>
         </div>
     );
 }
