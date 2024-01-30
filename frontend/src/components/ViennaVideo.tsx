@@ -11,8 +11,8 @@ export default function ViennaVideo() {
         const context = canvas.getContext('2d');
         if (!context) return;
 
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        canvas.width = screen.width;
+        canvas.height = screen.height;
 
         const images: HTMLImageElement[] = [];
 
@@ -61,7 +61,7 @@ export default function ViennaVideo() {
 
         return (
         <div className="image-sequence-container h-[500vh] w-screen flex justify-center scroll-smooth">
-            <canvas ref={containerRef} className={`w-[${window.innerWidth}] h-[${window.innerHeight}] fixed`}></canvas>
+            <canvas ref={containerRef} className={`w-[${screen.width}] h-[${screen.height}] fixed`}></canvas>
         </div>
     );
 }
