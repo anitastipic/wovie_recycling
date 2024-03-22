@@ -1,9 +1,14 @@
 import React, {useState} from "react";
 import Navbar from "./Navbar.tsx";
+import {useAuth} from "../context/AuthenticationContext.tsx";
+import {useNavigate} from "react-router-dom";
 
 export default function UserLogin() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const { authorize } = useAuth();
+
+    const navigate = useNavigate();
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -12,7 +17,7 @@ export default function UserLogin() {
             password: password
         }
 
-        fetch("http://localhost:8080/user/login", {
+        fetch("http://localhost:8080/auth/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -20,9 +25,12 @@ export default function UserLogin() {
             body: JSON.stringify(bodyData),
             credentials: 'include'
         }).then((res) => {
-            console.log(res)
+            console.log(bodyData);
+            console.log(res);
             if (!res.ok) throw new Error('Login failed');
-            if(res.ok) window.location.pathname = '/hero';
+            if (res.ok) {
+                authorize();
+                navigate('/hero');}
         })
 
     }

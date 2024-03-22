@@ -1,9 +1,12 @@
 import React, {useState} from "react";
 import Navbar from "./Navbar.tsx";
+import {useNavigate} from "react-router-dom";
 
 export default function UserSignUp() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+
+    const navigate = useNavigate();
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -19,7 +22,7 @@ export default function UserSignUp() {
             },
             body: JSON.stringify(bodyData)
         })
-        window.location.pathname = '/hero';
+        navigate('/login');
     }
     return (
         <div className="bg-third h-screen ">
