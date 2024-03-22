@@ -22,42 +22,16 @@ import java.util.Optional;
 @RequestMapping("user")
 public class UserController {
     private final UserService userService;
-    private final AuthenticationProvider authenticationProvider;
-    private final JwtEncoder jwtEncoder;
     private final JwtDecoder jwtDecoder;
 
-    public UserController(UserService userService, AuthenticationProvider authenticationProvider, JwtEncoder jwtEncoder, JwtDecoder jwtDecoder) {
+    public UserController(UserService userService, JwtDecoder jwtDecoder) {
         this.userService = userService;
-        this.authenticationProvider = authenticationProvider;
-        this.jwtEncoder = jwtEncoder;
         this.jwtDecoder = jwtDecoder;
     }
 
     @PostMapping("/register")
     public User registerNewUserAccount(@RequestBody User user) {
         return userService.createNewUser(user);
-    }
-
-    @PostMapping("/login")
-    private Optional<String> login(@RequestBody User user,  @Value("${tokens.algorithm}") MacAlgorithm macAlgorithm, HttpServletResponse response) {
-        var usernamePasswordAuthentication = new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword());
-
-        var authenticatedAuthentication = this.authenticationProvider.authenticate(usernamePasswordAuthentication);
-
-        if (authenticatedAuthentication.isAuthenticated()) {
-            var token = this.jwtEncoder.encode(JwtEncoderParameters.from(JwsHeader.with(macAlgorithm).build(),
-                    JwtClaimsSet.builder()
-                            .subject(authenticatedAuthentication.getName())
-                            .build()));
-
-            Cookie cookie = new Cookie("auth_token", token.getTokenValue());
-            cookie.setHttpOnly(true);
-            cookie.setPath("/");
-            response.addCookie(cookie);
-
-            return Optional.of(token.getTokenValue());
-        }
-        return Optional.empty();
     }
 
     @GetMapping("/profile")
@@ -72,22 +46,16 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }
 
-    @PostMapping("/logout")
-    public ResponseEntity<?> logout(HttpServletResponse response) {
-        Cookie cookie = new Cookie("auth_token", null);
-        cookie.setHttpOnly(true);
-        cookie.setPath("/");
-        cookie.setMaxAge(0); // This effectively clears the cookie
-        response.addCookie(cookie);
-        return ResponseEntity.ok().build();
-    }
-
     private String extractTokenFromCookie(HttpServletRequest request, String cookieName) {
-        return Arrays.stream(request.getCookies())
-                .filter(cookie -> cookieName.equals(cookie.getName()))
-                .findFirst()
-                .map(Cookie::getValue)
-                .orElse(null);
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            return Arrays.stream(cookies)
+                    .filter(cookie -> cookieName.equals(cookie.getName()))
+                    .findFirst()
+                    .map(Cookie::getValue)
+                    .orElse(null);
+        }
+        return null;
     }
 
     private String extractUsernameFromToken(String token) {

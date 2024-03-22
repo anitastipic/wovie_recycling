@@ -30,7 +30,7 @@ import java.util.List;
 public class SecurityConfig {
 
     @Bean
-     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity, JwtDecoder jwtDecoder, org.springframework.web.cors.CorsConfigurationSource corsConfigurationSource) throws Exception {
+     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity, JwtDecoder jwtDecoder, CorsConfigurationSource corsConfigurationSource) throws Exception {
          return httpSecurity
                  .csrf(AbstractHttpConfigurer::disable)
                  .cors(cors -> cors.configurationSource(corsConfigurationSource))
