@@ -5,9 +5,10 @@ type TypeWriterProp = {
     text: string[],
     typingDelay: number,
     nextWordDelay: number;
+    style: string;
 }
 
-export default function Typewriter({text, typingDelay, nextWordDelay}: TypeWriterProp) {
+export default function Typewriter({text, typingDelay, nextWordDelay, style}: TypeWriterProp) {
     const [index, setIndex] = useState(0);
     const [subIndex, setSubIndex] = useState(0);
     const [blink, setBlink] = useState(true);
@@ -34,8 +35,8 @@ export default function Typewriter({text, typingDelay, nextWordDelay}: TypeWrite
     }, []);
 
     return (
-        <div id="typewriter" className=" text-3xl text-amber-50 h-20 flex justify-center items-center">
-            <span>{text[index].substring(0, subIndex)}</span>
+        <div id="typewriter" className="h-20 flex justify-center items-center">
+            <span className={style}>{text[index].substring(0, subIndex)}</span>
             <span className={`cursor ${blink ? 'cursor--active' : ''}`} />
         </div>
     );
