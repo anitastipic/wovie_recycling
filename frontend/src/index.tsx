@@ -9,6 +9,7 @@ import MapPage from "./pages/MapPage.tsx";
 import UserSignUp from "./components/UserSignUp.tsx";
 import UserLogin from "./components/UserLogin.tsx";
 import UserPage from "./pages/UserPage.tsx";
+import {AuthProvider} from "./context/AuthenticationContext.tsx";
 
 const router = createBrowserRouter([
     {
@@ -25,15 +26,15 @@ const router = createBrowserRouter([
                 element: <MapPage/>,
             },
             {
-                path:"/login",
+                path: "/login",
                 element: <UserLogin/>
             },
             {
-                path:'register',
+                path: 'register',
                 element: <UserSignUp/>
             },
             {
-                path:"/hero",
+                path: "/hero",
                 element: <UserPage/>
             },
 
@@ -43,7 +44,9 @@ const router = createBrowserRouter([
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 root.render(
-    <React.StrictMode>
-        <RouterProvider router={router}/>
-    </React.StrictMode>
+    <AuthProvider>
+        <React.StrictMode>
+            <RouterProvider router={router}/>
+        </React.StrictMode>
+    </AuthProvider>
 );
