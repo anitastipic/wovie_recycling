@@ -13,9 +13,9 @@ export default function Home() {
     const style = "text-[2.5vw] font-primary font-bold text-amber-50";
 
     return (
-        <div className="bg-third h-[200vh]">
+        <div className="bg-third h-[216%]">
             <Navbar/>
-            <div className="grid grid-cols-1 pt-[16vh] h-[100vh]">
+            <div className="grid grid-cols-1 pt-[16vh] h-[100%]">
                 <div className="h-[20vh] content-center text-center">
                     <p className="text-[2.5vw] font-primary font-bold text-amber-50">WoVie - Wo und Wie recyceln in
                         Wien</p>
@@ -27,7 +27,7 @@ export default function Home() {
                     <img className="h-[4vh]" src={arrow}/>
                 </div>
             </div>
-            <div className="h-[100vh] relative">
+            <div className="h-[100%] relative">
                 <div className="absolute top-[15vw] ml-[12vw]">
                     <p className="text-amber-50 font-bold text-[4vw] ">Finde Container</p>
                     <p className="text-amber-50 font-bold text-[4vw]">in deiner Nähe</p>
