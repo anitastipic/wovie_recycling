@@ -48,7 +48,43 @@ public class ContainerService {
             District foundDistrict = districtService.findByDistrictNumber(newContainer.getDistrictNumber());
             newContainer.setDistrictId(foundDistrict.getId());
             newContainer.setDistrictName(foundDistrict.getDistrictName());
-            save(newContainer);
+            if (newContainer.getPaperWaste()) {
+                Container singleContainer = new Container(
+                        newContainer.getLatitude(), newContainer.getLongitude(), newContainer.getDistrictNumber(), newContainer.getStreet(),
+                        newContainer.getPaperWaste(), false, false, false, false, newContainer.getStreetNumber());
+                singleContainer.setDistrictName(foundDistrict.getDistrictName());
+                save(singleContainer);
+            }
+            if (newContainer.getOrganicWaste()) {
+                Container singleContainer = new Container(
+                        newContainer.getLatitude(), newContainer.getLongitude(), newContainer.getDistrictNumber(), newContainer.getStreet(),
+                        false, newContainer.getOrganicWaste(), false, false, false, newContainer.getStreetNumber());
+                singleContainer.setDistrictName(foundDistrict.getDistrictName());
+                save(singleContainer);
+            }
+            if (newContainer.getMetalWaste()) {
+                Container singleContainer = new Container(
+                        newContainer.getLatitude(), newContainer.getLongitude(), newContainer.getDistrictNumber(), newContainer.getStreet(),
+                        false, false, newContainer.getMetalWaste(), false, false, newContainer.getStreetNumber());
+                singleContainer.setDistrictName(foundDistrict.getDistrictName());
+                save(singleContainer);
+            }
+            if (newContainer.getGlassWaste()) {
+                Container singleContainer = new Container(
+                        newContainer.getLatitude(), newContainer.getLongitude(), newContainer.getDistrictNumber(), newContainer.getStreet(),
+                        false, false, false, newContainer.getGlassWaste(), false, newContainer.getStreetNumber());
+                singleContainer.setDistrictName(foundDistrict.getDistrictName());
+                save(singleContainer);
+            }
+            if (newContainer.getPlasticWaste()) {
+                Container singleContainer = new Container(
+                        newContainer.getLatitude(), newContainer.getLongitude(), newContainer.getDistrictNumber(), newContainer.getStreet(),
+                        false, false, false, false, newContainer.getPlasticWaste(), newContainer.getStreetNumber());
+                singleContainer.setDistrictName(foundDistrict.getDistrictName());
+                save(singleContainer);
+            }
+
+
         });
     }
 
@@ -56,5 +92,7 @@ public class ContainerService {
         return containerRepository.findByDistrictNumber(district);
     }
 
-    public  List<Container> findByDistrictName(String name) { return containerRepository.findByDistrictName(name);}
+    public List<Container> findByDistrictName(String name) {
+        return containerRepository.findByDistrictName(name);
+    }
 }
