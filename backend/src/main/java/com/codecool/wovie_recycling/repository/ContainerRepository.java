@@ -10,4 +10,8 @@ import java.util.List;
 public interface ContainerRepository extends JpaRepository<Container, Long> {
     List<Container> findByDistrictNumber(int district);
     List<Container> findByDistrictName(String name);
+    List<Container> findByMetalWaste(boolean metalWaste);
+    List<Container> findByPaperWaste(boolean paperWaste);
+    List<Container> findByOrganicWaste(boolean organicWaste);
+    List<Container> findByPlasticWaste(boolean plasticWaste);
 }

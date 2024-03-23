@@ -39,6 +39,19 @@ public class ContainerController {
     @GetMapping("/district/name/{name}")
     public  List<Container> findByDistrictName(@PathVariable String name) {return containerService.findByDistrictName(name);}
 
+    @GetMapping(value = "/metalWaste", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Container> findByContainerByMetalWaste() {return containerService.findByMetalWaste(true);}
+
+    @GetMapping(value = "/paperWaste", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Container> findByContainerByPaperWaste() {return containerService.findByPaperWaste(true);}
+
+    @GetMapping(value = "/organicWaste", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Container> findByContainerByOrganicWaste() {return containerService.findByOrganicWaste(true);}
+
+    @GetMapping(value = "/plasticWaste", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Container> findByContainerByPlasticWaste() {return containerService.findByPlasticWaste(true);}
+
+
     @PostMapping
     @Transactional
     public Container save(@RequestBody Container container) {

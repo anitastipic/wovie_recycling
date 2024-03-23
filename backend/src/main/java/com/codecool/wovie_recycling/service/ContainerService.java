@@ -102,4 +102,16 @@ public class ContainerService {
     public List<Container> findByMetalWaste(boolean metalWaste) {
         return containerRepository.findByMetalWaste(metalWaste);
     }
+
+    public List<Container> findByPaperWaste(boolean paperWaste) {
+        return containerRepository.findByPaperWaste(paperWaste);
+    }
+
+    public List<Container> findByOrganicWaste(boolean organicWaste) {
+        return containerRepository.findByOrganicWaste(organicWaste);
+    }
+
+    public List<Container> findByPlasticWaste(boolean plasticWaste) {
+        return containerRepository.findByPlasticWaste(plasticWaste);
+    }
 }
