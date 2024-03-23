@@ -5,6 +5,7 @@ import 'leaflet/dist/leaflet.css';
 import 'leaflet-extra-markers';
 import 'leaflet-extra-markers/dist/css/leaflet.extra-markers.min.css';
 import 'leaflet-extra-markers/dist/js/leaflet.extra-markers.min.js';
+import MapSideBar from "./MapSideBar.tsx";
 
 
 type Container = {
@@ -107,14 +108,11 @@ export default function Map() {
 
     return (
         <div className=" flex items-start justify-evenly">
-            <div className="flex justify-evenly h-[40vh]">
-                <select className="h-8 rounded-full bg-wovie pl-2 text-[2.3vh] text-third" onChange={handleDistrictChange} value={selectedDistrict || ''}>
-                    <option className="" value="">Wähle einen Bezirk</option>
-                    {districts.map(district => (
-                        <option key={district.id} value={district.districtName}>{district.districtName}</option>
-                    ))}
-                </select>
-            </div>
+            <MapSideBar
+                districts={districts}
+                selectedDistrict={selectedDistrict}
+                handleDistrictChange={handleDistrictChange}/>
+
             <div id="map" className="">
                 <MapContainer className="h-[70vh] w-[75vw]" center={[48.208492, 16.373127]} zoom={13}
                               scrollWheelZoom={true}>
