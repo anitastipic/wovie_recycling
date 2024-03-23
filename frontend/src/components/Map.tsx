@@ -107,7 +107,7 @@ export default function Map() {
 
     return (
         <div className=" flex items-start justify-evenly">
-            <div className="bg-gray-600 flex justify-evenly p-3 h-[40vh]">
+            <div className="flex justify-evenly h-[40vh]">
                 <select className="h-8 rounded-full bg-wovie pl-2 text-[2.3vh] text-third" onChange={handleDistrictChange} value={selectedDistrict || ''}>
                     <option className="" value="">Wähle einen Bezirk</option>
                     {districts.map(district => (
