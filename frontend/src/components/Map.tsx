@@ -65,7 +65,9 @@ export default function Map() {
 
     const handleWasteTypeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         const wasteType = event.target.value;
-        if(wasteType) {fetchContainerByWasteType(wasteType).then(setContainers);}
+        if (wasteType) {
+            fetchContainerByWasteType(wasteType).then(setContainers);
+        }
     }
 
     const getMarkerColor = (wasteType: string) => {
@@ -113,6 +115,8 @@ export default function Map() {
         });
     };
 
+    const longitudeIncrement = 0.00005;
+
     return (
         <div className=" flex items-start justify-evenly">
             <MapSideBar
@@ -128,27 +132,32 @@ export default function Map() {
                         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     />
-                    {containers.map(container => {
+                    {containers.reduce<React.ReactNode[]>((acc, container, index, array) => {
+                        const sameLocationContainers = array.filter(c => c.latitude === container.latitude && c.longitude === container.longitude);
+                        const containerIndex = sameLocationContainers.findIndex(c => c.id === container.id);
+                        const adjustedLongitude = container.longitude + (containerIndex * longitudeIncrement);
+
                         const wasteType = container.organicWaste ? "organicWaste" :
                             container.plasticWaste ? "plasticWaste" :
                                 container.paperWaste ? "paperWaste" :
                                     container.glassWaste ? "glassWaste" :
                                         container.metalWaste ? "metalWaste" : "default";
-
                         const markerColor = getMarkerColor(wasteType);
                         const icon = createMarkerIcon(markerColor);
 
-                        return (
+                        acc.push(
                             <Marker
                                 key={container.id}
-                                position={[container.longitude, container.latitude]}
+                                position={[adjustedLongitude, container.latitude]}
                                 icon={icon}>
                                 <Popup>
                                     {container.street + " " + container.streetNumber + ", " + container.districtNumber + ". " + container.districtName}
                                 </Popup>
                             </Marker>
                         );
-                    })}
+
+                        return acc;
+                    }, [])}
                 </MapContainer>
             </div>
         </div>
