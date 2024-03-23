@@ -45,21 +45,28 @@ export default function Map() {
             .then((res) => res.json());
     };
 
+    const fetchContainerByWasteType = (wasteType: string) => {
+        return fetch(`http://localhost:8080/container/${wasteType}`)
+            .then(res => res.json());
+    }
 
     useEffect(() => {
         fetchDistricts().then(setDistricts);
     }, []);
 
     const handleDistrictChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        if (event.target) {
-            const districtName = event.target.value
-            setSelectedDistrict(districtName);
-
-            if (districtName) {
-                fetchContainersByDistrict(districtName).then(setContainers);
-            }
+        const districtName = event.target.value;
+        setSelectedDistrict(districtName);
+        if (districtName) {
+            fetchContainersByDistrict(districtName).then(setContainers);
         }
+
     };
+
+    const handleWasteTypeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        const wasteType = event.target.value;
+        if(wasteType) {fetchContainerByWasteType(wasteType).then(setContainers);}
+    }
 
     const getMarkerColor = (wasteType: string) => {
         switch (wasteType) {
@@ -111,7 +118,8 @@ export default function Map() {
             <MapSideBar
                 districts={districts}
                 selectedDistrict={selectedDistrict}
-                handleDistrictChange={handleDistrictChange}/>
+                handleDistrictChange={handleDistrictChange}
+                handleWasteTypeChange={handleWasteTypeChange}/>
 
             <div id="map" className="">
                 <MapContainer className="h-[70vh] w-[75vw]" center={[48.208492, 16.373127]} zoom={13}
@@ -120,25 +128,27 @@ export default function Map() {
                         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     />
-                    {containers.flatMap(container => (
-                        Object.entries(container).flatMap(([key, value]) => {
-                            if (value === true && ['paperWaste', 'organicWaste', 'metalWaste', 'glassWaste', 'plasticWaste'].includes(key)) {
-                                return (
-                                    <Marker
-                                        key={`${container.id}-${key}`}
-                                        position={[container.longitude, container.latitude]}
-                                        icon={createMarkerIcon(getMarkerColor(key))}>
-                                        <Popup>
-                                            {/* Popup content, perhaps include container.street and the waste type */}
-                                            {container.street + " " + container.streetNumber + ", " + container.districtNumber + ". " + container.districtName}
-                                        </Popup>
-                                    </Marker>
-                                );
-                            } else {
-                                return [];
-                            }
-                        })
-                    ))}
+                    {containers.map(container => {
+                        const wasteType = container.organicWaste ? "organicWaste" :
+                            container.plasticWaste ? "plasticWaste" :
+                                container.paperWaste ? "paperWaste" :
+                                    container.glassWaste ? "glassWaste" :
+                                        container.metalWaste ? "metalWaste" : "default";
+
+                        const markerColor = getMarkerColor(wasteType);
+                        const icon = createMarkerIcon(markerColor);
+
+                        return (
+                            <Marker
+                                key={container.id}
+                                position={[container.longitude, container.latitude]}
+                                icon={icon}>
+                                <Popup>
+                                    {container.street + " " + container.streetNumber + ", " + container.districtNumber + ". " + container.districtName}
+                                </Popup>
+                            </Marker>
+                        );
+                    })}
                 </MapContainer>
             </div>
         </div>
