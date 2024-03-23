@@ -52,6 +52,7 @@ public class ContainerService {
                 Container singleContainer = new Container(
                         newContainer.getLatitude(), newContainer.getLongitude(), newContainer.getDistrictNumber(), newContainer.getStreet(),
                         newContainer.getPaperWaste(), false, false, false, false, newContainer.getStreetNumber());
+                singleContainer.setDistrictId(foundDistrict.getId());
                 singleContainer.setDistrictName(foundDistrict.getDistrictName());
                 save(singleContainer);
             }
@@ -59,6 +60,7 @@ public class ContainerService {
                 Container singleContainer = new Container(
                         newContainer.getLatitude(), newContainer.getLongitude(), newContainer.getDistrictNumber(), newContainer.getStreet(),
                         false, newContainer.getOrganicWaste(), false, false, false, newContainer.getStreetNumber());
+                singleContainer.setDistrictId(foundDistrict.getId());
                 singleContainer.setDistrictName(foundDistrict.getDistrictName());
                 save(singleContainer);
             }
@@ -66,6 +68,7 @@ public class ContainerService {
                 Container singleContainer = new Container(
                         newContainer.getLatitude(), newContainer.getLongitude(), newContainer.getDistrictNumber(), newContainer.getStreet(),
                         false, false, newContainer.getMetalWaste(), false, false, newContainer.getStreetNumber());
+                singleContainer.setDistrictId(foundDistrict.getId());
                 singleContainer.setDistrictName(foundDistrict.getDistrictName());
                 save(singleContainer);
             }
@@ -73,6 +76,7 @@ public class ContainerService {
                 Container singleContainer = new Container(
                         newContainer.getLatitude(), newContainer.getLongitude(), newContainer.getDistrictNumber(), newContainer.getStreet(),
                         false, false, false, newContainer.getGlassWaste(), false, newContainer.getStreetNumber());
+                singleContainer.setDistrictId(foundDistrict.getId());
                 singleContainer.setDistrictName(foundDistrict.getDistrictName());
                 save(singleContainer);
             }
@@ -80,11 +84,10 @@ public class ContainerService {
                 Container singleContainer = new Container(
                         newContainer.getLatitude(), newContainer.getLongitude(), newContainer.getDistrictNumber(), newContainer.getStreet(),
                         false, false, false, false, newContainer.getPlasticWaste(), newContainer.getStreetNumber());
+                singleContainer.setDistrictId(foundDistrict.getId());
                 singleContainer.setDistrictName(foundDistrict.getDistrictName());
                 save(singleContainer);
             }
-
-
         });
     }
 
@@ -94,5 +97,9 @@ public class ContainerService {
 
     public List<Container> findByDistrictName(String name) {
         return containerRepository.findByDistrictName(name);
+    }
+
+    public List<Container> findByMetalWaste(boolean metalWaste) {
+        return containerRepository.findByMetalWaste(metalWaste);
     }
 }
