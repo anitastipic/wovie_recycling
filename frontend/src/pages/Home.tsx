@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar.js";
 import arrow from "../assets/Arrow.svg";
 import wave from "../assets/wavyBackground.svg";
 import pin from "../assets/pin.svg";
+import {useNavigate} from "react-router-dom";
 
 
 export default function Home() {
@@ -11,6 +12,8 @@ export default function Home() {
     const typingDelay = 75;
     const nextLineDelay = 1500;
     const style = "text-[2.5vw] font-primary font-bold text-amber-50";
+
+    const nav = useNavigate();
 
     return (
         <div className="bg-third h-[216%]">
@@ -37,7 +40,7 @@ export default function Home() {
                 <img className="absolute h-[15vw] top-[37vw] left-[59.5vw]" src="/trashcanYellow.png"/>
                 <img className="absolute h-[9vw] top-[41.5vw] left-[74.5vw]" src="/trashcanRed.png"/>
                 <img className="absolute h-[11.5vw] top-[39.8vw] left-[86.5vw]" src="/trashcanBrown.png"/>
-                <button className="absolute top-[45.5vw] left-[17vw] h-[5vw] w-[15vw] bg-third rounded-full text-[2vw] text-amber-50">Zur Karte</button>
+                <button className="absolute top-[45.5vw] left-[17vw] h-[5vw] w-[15vw] bg-third rounded-full text-[2vw] text-amber-50" onClick={() => nav('/map')}>Zur Karte</button>
             </div>
         </div>
     )
