@@ -1,4 +1,3 @@
-import React, {useEffect, useState} from "react";
 import Navbar from "../components/Navbar.js";
 import wave from "../assets/wavyBackground.svg";
 import pin from "../assets/pin.svg";
@@ -8,7 +7,6 @@ import {useNavigate} from "react-router-dom";
 
 export default function Home() {
 
-    const [arrowIsVisible, setArrowIsVisible] = useState(true);
     const nav = useNavigate();
 
     return (
