@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 
-
 type TypeWriterProp = {
     text: string[],
     typingDelay: number,
