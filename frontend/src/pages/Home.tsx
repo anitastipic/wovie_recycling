@@ -9,28 +9,7 @@ import {useNavigate} from "react-router-dom";
 export default function Home() {
 
     const [arrowIsVisible, setArrowIsVisible] = useState(true);
-    const [scrollHeight, setScrollHeight] = useState(0);
     const nav = useNavigate();
-
-    useEffect(() => {
-        window.addEventListener("scroll", listenToScroll);
-        return () =>
-            window.removeEventListener("scroll", listenToScroll);
-    }, [])
-
-    function listenToScroll() {
-        const heightToHideFrom = 50;
-        const currentScrollPosition = document.body.scrollTop ||
-            document.documentElement.scrollTop;
-        setScrollHeight(currentScrollPosition);
-
-        if (currentScrollPosition > heightToHideFrom) {
-            arrowIsVisible && setArrowIsVisible(false);
-        } else {
-            setArrowIsVisible(true);
-        }
-
-    }
 
     return (
         <div className="bg-third h-[100%] overflow-x-clip">
