@@ -10,6 +10,7 @@ import UserSignUp from "./components/UserSignUp.tsx";
 import UserLogin from "./components/UserLogin.tsx";
 import UserPage from "./pages/UserPage.tsx";
 import {AuthProvider} from "./context/AuthenticationContext.tsx";
+import InProgress from "./pages/InProgress.tsx";
 
 const router = createBrowserRouter([
     {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
             {
                 path: "/hero",
                 element: <UserPage/>
+            },
+            {
+                path: "/recycling-1-0-1",
+                element: <InProgress/>
             },
 
         ],

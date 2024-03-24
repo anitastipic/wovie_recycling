@@ -15,11 +15,7 @@ export default function Navbar() {
                           className="text-amber-50 text-lg transition-colors duration-300 transform hover:text-wovie mx-3"
                     >Karte</Link>
                     <a className="text-amber-50 text-lg transition-colors duration-300 transform hover:text-wovie mx-3"
-                       href="/about">Recycling 1 - 0 - 1</a>
-                    <a className="text-amber-50 text-lg transition-colors duration-300 transform hover:text-wovie mx-3"
-                       href="/contact">Über uns</a>
-                    <a className="text-amber-50 text-lg transition-colors duration-300 transform hover:text-wovie mx-3"
-                       href="/contact">Kontakt</a>
+                       href="/recycling-1-0-1">Recycling 1 - 0 - 1</a>
                 </div>
                 <Link to="/hero" className=" h-[6.5vh] flex w-auto">
                     <img src={heroBadge} alt="Hero" className="object-contain"/>
