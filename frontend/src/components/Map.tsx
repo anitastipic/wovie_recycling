@@ -5,7 +5,7 @@ import 'leaflet/dist/leaflet.css';
 import 'leaflet-extra-markers';
 import 'leaflet-extra-markers/dist/css/leaflet.extra-markers.min.css';
 import 'leaflet-extra-markers/dist/js/leaflet.extra-markers.min.js';
-import MapSideBar from "./MapSideBar.tsx";
+import MapFilterSection from "./MapFilterSection.tsx";
 
 
 type Container = {
@@ -34,40 +34,52 @@ export default function Map() {
     const [containers, setContainers] = useState<Container[]>([]);
     const [districts, setDistricts] = useState<District[]>([]);
     const [selectedDistrict, setSelectedDistrict] = useState<string | null>(null);
+    const [selectedWasteTypes, setSelectedWasteTypes] = useState({paperWaste:false, glassWaste: false, organicWaste:false, plasticWaste: false})
 
     const fetchDistricts = () => {
         return fetch("http://localhost:8080/district")
             .then((res) => res.json());
     };
 
-    const fetchContainersByDistrict = (name: string) => {
-        return fetch(`http://localhost:8080/container/district/name/${name}`)
-            .then((res) => res.json());
-    };
-
-    const fetchContainerByWasteType = (wasteType: string) => {
-        return fetch(`http://localhost:8080/container/${wasteType}`)
-            .then(res => res.json());
-    }
-
     useEffect(() => {
         fetchDistricts().then(setDistricts);
     }, []);
 
+    const fetchFilteredContainers = () => {
+        const enabledWasteTypes = Object.entries(selectedWasteTypes)
+            .filter(([_, value]) => value)
+            .map(([key, _]) => key);
+
+        const queryParams = new URLSearchParams();
+        enabledWasteTypes.forEach(type => queryParams.append("wasteTypes", type));
+        if (selectedDistrict) queryParams.set("districtName", selectedDistrict);
+
+        const fetchURL = `http://localhost:8080/container/filter?${queryParams.toString()}`;
+        return fetch(fetchURL)
+            .then(res => res.json())
+    };
+
     const handleDistrictChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         const districtName = event.target.value;
         setSelectedDistrict(districtName);
-        if (districtName) {
-            fetchContainersByDistrict(districtName).then(setContainers);
-        }
-
     };
 
-    const handleWasteTypeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        const wasteType = event.target.value;
-        if (wasteType) {
-            fetchContainerByWasteType(wasteType).then(setContainers);
-        }
+    const handleWasteTypeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const key = event.target.value;
+        const isChecked = event.target.checked;
+        setSelectedWasteTypes(prev => ({
+            ...prev,
+            [key]: isChecked,
+        }));
+    }
+
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        fetchFilteredContainers().then((res: Container[]) => {
+            setContainers(res);
+        }).catch((error) => {
+                console.error("Failed to fetch containers:", error);
+            });
     }
 
     const getMarkerColor = (wasteType: string) => {
@@ -118,15 +130,16 @@ export default function Map() {
     const longitudeIncrement = 0.00005;
 
     return (
-        <div className=" flex items-start justify-evenly">
-            <MapSideBar
+        <div className="grid grid-cols-1 gap-y-5 place-items-center h-[84%] bg-third">
+            <MapFilterSection
                 districts={districts}
                 selectedDistrict={selectedDistrict}
                 handleDistrictChange={handleDistrictChange}
-                handleWasteTypeChange={handleWasteTypeChange}/>
+                handleWasteTypeChange={handleWasteTypeChange}
+                handleSubmit={handleSubmit}/>
 
             <div id="map" className="">
-                <MapContainer className="h-[70vh] w-[75vw]" center={[48.208492, 16.373127]} zoom={13}
+                <MapContainer className="h-[68vh] w-[95vw]" center={[48.208492, 16.373127]} zoom={13}
                               scrollWheelZoom={true}>
                     <TileLayer
                         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
