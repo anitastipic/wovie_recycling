@@ -3,6 +3,8 @@ import Navbar from "../components/Navbar.js";
 import arrow from "../assets/Arrow.svg";
 import wave from "../assets/wavyBackground.svg";
 import pin from "../assets/pin.svg";
+import wheel from "../assets/wheel.svg";
+import semicircle from "../assets/semicircle.svg";
 import {useNavigate} from "react-router-dom";
 
 
@@ -33,36 +35,30 @@ export default function Home() {
     }
 
     return (
-        <div className="bg-third h-[216%]">
+        <div className="bg-third h-[100%] overflow-x-clip">
             <Navbar/>
-            <div className="grid grid-cols-1 pt-[16vh] h-[120%] md:h[100%]">
-                <div className="h-[20vh] content-center text-center">
+            <div className="h-[84vh] pt-[16vh] items-center relative">
+                <div className="h-[25vh] content-center text-center">
                     <p className="text-[2.5vw] font-primary font-bold text-amber-50">WoVie - Wo und Wie recyceln in
                         Wien</p>
                 </div>
-                <div className="">
-                    <img className="" src={"/Vienna.png"}/>
+                <div className="w-full h-[10vh] flex justify-center">
+                    <img className="h-[10vh]" src={wheel}/>
                 </div>
-
-                <div className="h-[20vh] w-[100vw] flex justify-center items-center">
-                    {arrowIsVisible &&
-                        <img className="h-[4vh] invisible md:visible" src={arrow}/>
-                    }
+                <div className="h-[50vh] z-10 overflow-hidden absolute">
+                    <div className="-ml-[35vw] h-[170vw] w-[170vw] bg-white rounded-full"></div>
                 </div>
-
             </div>
-            <div className="h-[100%] relative">
-                <div className="absolute top-[15vw] ml-[12vw]">
-                    <p className="text-amber-50 font-bold text-[4vw] ">Finde Container</p>
-                    <p className="text-amber-50 font-bold text-[4vw]">in deiner Nähe</p>
+            <div className="h-[45%] mt-[0vh] z-10 relative bg-blue-400">
+                <img className="absolute top-0" src={wave}/>
+                <div className="absolute top-[20vw] ml-[12.5vw]">
+                    <p className="text-third font-bold text-[4vw] ">Finde Container</p>
+                    <p className="text-third font-bold text-[4vw]">in deiner Nähe</p>
                 </div>
-                <img className="" src={wave}/>
-                <img className="absolute h-[27vw] top-[10vw] left-[70vw]" src={pin}/>
-                <img className="absolute h-[15vw] top-[37vw] left-[59.5vw]" src="/trashcanYellow.png"/>
-                <img className="absolute h-[9vw] top-[41.5vw] left-[74.5vw]" src="/trashcanRed.png"/>
-                <img className="absolute h-[11.5vw] top-[39.8vw] left-[86.5vw]" src="/trashcanBrown.png"/>
-                <button
-                    className="absolute top-[45.5vw] left-[17vw] h-[5vw] w-[15vw] bg-third rounded-full text-[2vw] text-amber-50"
+                <img className="absolute h-[18vw] top-[13vw] left-[74.3vw]" src={pin}/>
+                <img className="absolute h-[26vw] top-[30vw] left-[70.3vw]" src={"/trashcanYellow.png"}/>
+               <button
+                    className="absolute top-[46vw] left-[17.7vw] h-[5vw] w-[15vw] bg-third rounded-full text-[2vw] text-amber-50"
                     onClick={() => nav('/map')}>Zur Karte
                 </button>
             </div>
