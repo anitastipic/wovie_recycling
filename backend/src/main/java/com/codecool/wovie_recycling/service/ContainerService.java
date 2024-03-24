@@ -6,8 +6,10 @@ import com.codecool.wovie_recycling.model.Container;
 import com.codecool.wovie_recycling.model.District;
 import com.codecool.wovie_recycling.repository.ContainerRepository;
 import com.codecool.wovie_recycling.runner.PropertiesDTO;
+import com.codecool.wovie_recycling.specifications.ContainerSpecifications;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -114,4 +116,32 @@ public class ContainerService {
     public List<Container> findByPlasticWaste(boolean plasticWaste) {
         return containerRepository.findByPlasticWaste(plasticWaste);
     }
+
+    public List<Container> findByGlassWaste(boolean glassWaste) {
+        return containerRepository.findByGlassWaste(glassWaste);
+    }
+
+
+    public List<Container> findByFilters(List<String> wasteTypes, String districtName) {
+        Specification<Container> specification = (root, query, criteriaBuilder) -> criteriaBuilder.conjunction();
+
+        if (districtName != null && !districtName.isEmpty()) {
+            specification = specification.and(ContainerSpecifications.isLocatedInDistrict(districtName));
+        }
+
+        Specification<Container> wasteTypeSpec = null;
+        if (wasteTypes != null && !wasteTypes.isEmpty()) {
+            for (String wasteType : wasteTypes) {
+                Specification<Container> currentSpec = ContainerSpecifications.hasWasteType(wasteType);
+                wasteTypeSpec = (wasteTypeSpec == null) ? currentSpec : wasteTypeSpec.or(currentSpec);
+            }
+        }
+
+        if (wasteTypeSpec != null) {
+            specification = specification.and(wasteTypeSpec);
+        }
+
+        return containerRepository.findAll(specification);
+    }
+
 }

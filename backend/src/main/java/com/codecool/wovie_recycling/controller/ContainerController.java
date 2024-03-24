@@ -1,7 +1,6 @@
 package com.codecool.wovie_recycling.controller;
 
 import com.codecool.wovie_recycling.model.Container;
-import com.codecool.wovie_recycling.model.District;
 import com.codecool.wovie_recycling.service.ContainerService;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.MediaType;
@@ -51,7 +50,15 @@ public class ContainerController {
     @GetMapping(value = "/plasticWaste", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Container> findByContainerByPlasticWaste() {return containerService.findByPlasticWaste(true);}
 
+    @GetMapping(value = "/glassWaste", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Container> findByContainerByGlassWaste() {return containerService.findByGlassWaste(true);}
 
+    @GetMapping(value = "/filter", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Container> filterContainers(
+            @RequestParam(required = false) List<String> wasteTypes,
+            @RequestParam(required = false) String districtName) {
+        return containerService.findByFilters(wasteTypes, districtName);
+    }
     @PostMapping
     @Transactional
     public Container save(@RequestBody Container container) {
