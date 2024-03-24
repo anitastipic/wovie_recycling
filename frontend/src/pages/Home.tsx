@@ -1,10 +1,8 @@
 import React, {useEffect, useState} from "react";
 import Navbar from "../components/Navbar.js";
-import arrow from "../assets/Arrow.svg";
 import wave from "../assets/wavyBackground.svg";
 import pin from "../assets/pin.svg";
 import wheel from "../assets/wheel.svg";
-import semicircle from "../assets/semicircle.svg";
 import {useNavigate} from "react-router-dom";
 
 
