@@ -2,5 +2,5 @@
 
 Please refer to
 
-- https://github.com/anitastipic/wovieBackend
+- https://github.com/anitastipic/wovie-backend
 - https://github.com/anitastipic/wovie
